@@ -3,11 +3,11 @@ import { ChevronRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] pt-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-burgundy-900 text-cream-500 pt-20">
       {/* Subtle Background Element */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full opacity-30 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-200 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-green-100 blur-[120px] rounded-full" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-gold-500/20 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-burgundy-700 blur-[120px] rounded-full" />
       </div>
       
       <motion.div 
@@ -22,19 +22,19 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="mb-6"
         >
-          <h2 className="text-blue-600">Pantry Belt</h2>
+          <h2>Pantry Belt</h2>
         </motion.div>
         
-        <h1 className="mb-8 tracking-tight font-semibold text-[#1d1d1f]">
+        <h1 className="mb-8 tracking-tight font-semibold text-cream-500">
           Be a part of the change. <br />
-          <span className="text-gray-400">Join the pantry pioneers.</span>
+          <span className="text-cream-500/50">Join the pantry pioneers.</span>
         </h1>
         
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-xl md:text-2xl text-[#86868b] mb-12 max-w-2xl mx-auto font-medium"
+          className="text-xl md:text-2xl text-cream-500/80 mb-12 max-w-2xl mx-auto font-medium"
         >
           Connecting rural communities with local food resources. <br className="hidden md:block" />
           Simple, essential, and life-changing.
@@ -47,7 +47,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           <a href="#waitlist" className="btn-primary">
-            Join the Waitlist
+            Reserve My Spot
           </a>
           <button className="btn-secondary group">
             Learn how it works
