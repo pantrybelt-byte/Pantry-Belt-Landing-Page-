@@ -10,8 +10,8 @@ export default function App() {
       <nav className="fixed top-0 w-full z-50 apple-blur border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-7 h-7 bg-[#0071e3] rounded-lg flex items-center justify-center transition-transform group-hover:scale-105">
-              <div className="w-3 h-3 bg-white rounded-full" />
+            <div className="w-9 h-9 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center transition-transform group-hover:scale-105 border border-black/5">
+              <img src="/logo.png" alt="Pantry Belt Logo" className="w-full h-full object-cover scale-[1.08]" />
             </div>
             <span className="font-display font-semibold tracking-tight text-xl text-[#1d1d1f]">Pantry Belt</span>
           </div>
@@ -34,8 +34,8 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="space-y-4 max-w-sm">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-[#0071e3] rounded flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full" />
+                <div className="w-8 h-8 rounded-full overflow-hidden bg-[#f5f5f7] border border-black/5 shrink-0 flex items-center justify-center">
+                  <img src="/logo.png" alt="Pantry Belt Logo" className="w-full h-full object-cover scale-[1.08]" />
                 </div>
                 <span className="font-display font-bold text-xl text-[#1d1d1f]">Pantry Belt</span>
               </div>
