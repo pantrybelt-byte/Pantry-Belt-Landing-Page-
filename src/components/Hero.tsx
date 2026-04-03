@@ -3,11 +3,11 @@ import { ChevronRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-burgundy-900 text-cream-500 pt-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] pt-20">
       {/* Subtle Background Element */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full opacity-30 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-gold-500/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-burgundy-700 blur-[120px] rounded-full" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#0071e3]/20 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-black/5 blur-[120px] rounded-full" />
       </div>
       
       <motion.div 
@@ -25,16 +25,16 @@ export default function Hero() {
           <h2>Pantry Belt</h2>
         </motion.div>
         
-        <h1 className="mb-8 tracking-tight font-semibold text-cream-500">
+        <h1 className="mb-8 tracking-tight font-semibold text-[#1d1d1f]">
           Be a part of the change. <br />
-          <span className="text-cream-500/50">Join the pantry pioneers.</span>
+          <span className="text-[#86868b]">Join the pantry pioneers.</span>
         </h1>
         
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-xl md:text-2xl text-cream-500/80 mb-12 max-w-2xl mx-auto font-medium"
+          className="text-xl md:text-2xl text-[#86868b] mb-12 max-w-2xl mx-auto font-medium"
         >
           Connecting rural communities with local food resources. <br className="hidden md:block" />
           Simple, essential, and life-changing.
@@ -46,10 +46,10 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-          <a href="#waitlist" className="btn-primary">
+          <a href="#waitlist" className="btn-floating px-8 py-4 !rounded-full">
             Reserve My Spot
           </a>
-          <button className="btn-secondary group">
+          <button className="btn-secondary group !text-[#0071e3] hover:!text-[#0077ED] !bg-transparent">
             Learn how it works
             <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -63,7 +63,7 @@ export default function Hero() {
         transition={{ delay: 0.8, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
         className="mt-20 w-full max-w-6xl px-6"
       >
-        <div className="relative aspect-[21/9] rounded-[32px] overflow-hidden shadow-2xl border border-white/20 bg-gray-200">
+        <div className="relative aspect-[21/9] rounded-[32px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-black/5 bg-white">
           <img 
             src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2000&auto=format&fit=crop" 
             alt="Community Volunteers Stocking Pantry" 
@@ -71,10 +71,10 @@ export default function Hero() {
             referrerPolicy="no-referrer"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-8 left-8 text-white">
-            <p className="text-sm font-medium opacity-80">Supporting Rural Communities</p>
-            <p className="text-xs opacity-60">Est. 2026</p>
+            <p className="text-sm font-medium opacity-90">Supporting Rural Communities</p>
+            <p className="text-xs opacity-70">Est. 2026</p>
           </div>
         </div>
       </motion.div>
