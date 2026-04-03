@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export default function BrandStory() {
   return (
-    <section className="section-padding bg-transparent border-t border-black/5 overflow-hidden">
+    <section className="section-padding bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div

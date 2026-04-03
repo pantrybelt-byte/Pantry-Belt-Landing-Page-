@@ -5,7 +5,7 @@ import WaitlistForm from "./components/WaitlistForm";
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-[#f5f5f7] selection:bg-[#0071e3]/20 selection:text-[#0071e3] relative isolate">
+    <main className="min-h-screen bg-[#f5f5f7] selection:bg-[#0071e3]/20 selection:text-[#0071e3] relative isolate overflow-hidden">
       {/* 3D Background Pattern */}
       <div className="bg-pattern animate-background-drift" />
 
@@ -34,7 +34,7 @@ export default function App() {
       <BrandStory />
       <WaitlistForm />
 
-      <footer className="py-20 px-6 bg-[#f5f5f7]/95 border-t border-black/5 relative z-10">
+      <footer className="py-20 px-6 bg-[#f5f5f7]/95 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="space-y-6 max-w-sm">
