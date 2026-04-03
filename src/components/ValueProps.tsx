@@ -36,15 +36,22 @@ export default function ValueProps() {
           </h3>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-[1000px]">
           {props.map((prop, index) => (
             <motion.div
               key={prop.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ 
+                y: -12,
+                rotateX: 4,
+                rotateY: -4,
+                scale: 1.02,
+                transition: { duration: 0.4, ease: "easeOut" }
+              }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
-              className="group p-10 rounded-[var(--radius-apple)] bg-[#f5f5f7] border border-transparent hover:bg-white hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500"
+              className="group p-10 rounded-[var(--radius-apple)] bg-[#f5f5f7] border border-transparent hover:bg-white shadow-3d hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] transition-all duration-500"
             >
               <div className={`${prop.color} mb-8 transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100`}>
                 <prop.icon size={40} strokeWidth={1.5} />

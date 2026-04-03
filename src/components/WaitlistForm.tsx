@@ -106,7 +106,7 @@ export default function WaitlistForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-2xl mx-auto space-y-6 md:space-y-8 glass-card p-8 md:p-16"
+          className="max-w-2xl mx-auto space-y-6 md:space-y-8 bg-white shadow-3d rounded-[var(--radius-apple)] border border-black/5 p-8 md:p-16"
         >
           {error && (
             <motion.div 

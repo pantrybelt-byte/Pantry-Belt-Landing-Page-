@@ -3,10 +3,10 @@ import { ChevronRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#f5f5f7] text-[#1d1d1f] pt-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white text-[#1d1d1f] pt-20">
       {/* Subtle Background Element */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full opacity-30 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#0071e3]/20 blur-[120px] rounded-full" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#0071e3]/10 blur-[120px] rounded-full" />
         <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-black/5 blur-[120px] rounded-full" />
       </div>
       
@@ -25,9 +25,9 @@ export default function Hero() {
           {/* Logo was here, removed text as per request */}
         </motion.div>
         
-        <h1 className="mb-8 tracking-tight font-semibold text-[#1d1d1f]">
+        <h1 className="mb-8 tracking-tight font-semibold text-gradient-blue">
           Be a part of the change. <br />
-          <span className="text-[#86868b]">Join the pantry pioneers.</span>
+          <span className="text-[#86868b]/80">Join the pantry pioneers.</span>
         </h1>
         
         <motion.p 
@@ -59,7 +59,7 @@ export default function Hero() {
         transition={{ delay: 0.8, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
         className="mt-20 w-full max-w-6xl px-6"
       >
-        <div className="relative aspect-[21/9] rounded-[32px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)] border border-black/5 bg-white">
+        <div className="relative aspect-[21/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-white">
           <img 
             src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2000&auto=format&fit=crop" 
             alt="Community Volunteers Stocking Pantry" 
