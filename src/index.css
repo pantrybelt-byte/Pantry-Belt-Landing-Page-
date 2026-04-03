@@ -51,7 +51,7 @@
 }
 
 .btn-floating {
-  @apply btn-primary hover:-translate-y-1 shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.12)];
+  @apply px-8 py-4 bg-[#0071e3] text-white rounded-[18px] font-semibold hover:bg-[#0077ED] transition-all duration-300 active:scale-95 text-center flex items-center justify-center hover:-translate-y-1 shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.12)];
 }
 
 .btn-secondary {
