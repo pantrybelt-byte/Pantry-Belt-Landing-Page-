@@ -20,9 +20,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="mb-6"
+          className="mb-10"
         >
-          <h2>Pantry Belt</h2>
+          {/* Logo was here, removed text as per request */}
         </motion.div>
         
         <h1 className="mb-8 tracking-tight font-semibold text-[#1d1d1f]">

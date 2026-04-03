@@ -15,7 +15,7 @@ export default function App() {
           {/* Center - Standalone Logo */}
           <div className="flex justify-center group cursor-pointer">
             <div className="w-14 h-14 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center transition-transform group-hover:scale-105 border border-black/5">
-              <img src="/logo.png" alt="Pantry Belt" className="w-full h-full object-cover scale-[1.08]" />
+              <img src="/logo.png" alt="Logo" className="w-full h-full object-cover scale-[1.08]" />
             </div>
           </div>
 
@@ -34,13 +34,13 @@ export default function App() {
       <footer className="py-20 px-6 bg-[#f5f5f7] border-t border-black/5">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
-            <div className="space-y-4 max-w-sm">
+            <div className="space-y-6 max-w-sm">
               <div className="flex items-center">
-                <div className="w-14 h-14 rounded-full overflow-hidden bg-[#f5f5f7] border border-black/5 shrink-0 flex items-center justify-center">
+                <div className="w-32 h-32 rounded-full overflow-hidden bg-[#f5f5f7] border border-black/5 shrink-0 flex items-center justify-center -ml-4">
                   <img src="/logo.png" alt="Pantry Belt Logo" className="w-full h-full object-cover scale-[1.08]" />
                 </div>
               </div>
-              <p className="text-[#86868b] font-medium">
+              <p className="text-[#86868b] font-medium text-lg leading-relaxed">
                 Bridging the gap between rural communities and essential food resources through technology and compassion.
               </p>
             </div>
