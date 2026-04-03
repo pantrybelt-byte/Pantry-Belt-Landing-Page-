@@ -5,7 +5,10 @@ import WaitlistForm from "./components/WaitlistForm";
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-white selection:bg-[#0071e3]/20 selection:text-[#0071e3]">
+    <main className="min-h-screen bg-white/95 selection:bg-[#0071e3]/20 selection:text-[#0071e3] relative">
+      {/* 3D Background Pattern */}
+      <div className="bg-pattern animate-background-drift" />
+
       {/* Navigation - Refined Apple-like Header */}
       <nav className="fixed top-0 w-full z-50 apple-blur border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6 h-20 grid grid-cols-3 items-center">
@@ -31,7 +34,7 @@ export default function App() {
       <BrandStory />
       <WaitlistForm />
 
-      <footer className="py-20 px-6 bg-[#f5f5f7] border-t border-black/5">
+      <footer className="py-20 px-6 bg-[#f5f5f7]/95 border-t border-black/5 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="space-y-6 max-w-sm">

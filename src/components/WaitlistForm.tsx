@@ -62,12 +62,12 @@ export default function WaitlistForm() {
 
   if (status === 'success') {
     return (
-      <section id="waitlist" className="section-padding bg-white text-center">
+      <section id="waitlist" className="section-padding bg-transparent text-center">
         <motion.div 
           initial={{ scale: 0.95, opacity: 0, filter: "blur(10px)" }}
           animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-md mx-auto p-16 rounded-[var(--radius-apple)] bg-white border border-black/5 shadow-[0_30px_60px_rgba(0,0,0,0.12)]"
+          className="max-w-md mx-auto p-16 rounded-[var(--radius-apple)] bg-white/95 border border-black/5 shadow-3d"
         >
           <motion.div 
             initial={{ scale: 0 }}
@@ -87,8 +87,7 @@ export default function WaitlistForm() {
   }
 
   return (
-    <section id="waitlist" className="section-padding bg-white relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-[#0071e3]/5 blur-[120px] rounded-full pointer-events-none" />
+    <section id="waitlist" className="section-padding bg-transparent relative overflow-hidden">
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="mb-4">Ready to pioneer?</h2>
