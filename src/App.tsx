@@ -44,40 +44,17 @@ export default function App() {
                 Bridging the gap between rural communities and essential food resources through technology and compassion.
               </p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-12">
-              <div className="space-y-4">
-                <p className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest">Product</p>
-                <ul className="space-y-2 text-sm text-[#86868b] font-medium">
-                  <li><a href="#" className="hover:text-[#0071e3] transition-colors">Features</a></li>
-                  <li><a href="#" className="hover:text-[#0071e3] transition-colors">Waitlist</a></li>
-                  <li><a href="#" className="hover:text-[#0071e3] transition-colors">Roadmap</a></li>
-                </ul>
-              </div>
-              <div className="space-y-4">
-                <p className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest">Company</p>
-                <ul className="space-y-2 text-sm text-[#86868b] font-medium">
-                  <li><a href="#" className="hover:text-[#0071e3] transition-colors">About Us</a></li>
-                  <li><a href="#" className="hover:text-[#0071e3] transition-colors">Careers</a></li>
-                  <li><a href="#" className="hover:text-[#0071e3] transition-colors">Press</a></li>
-                </ul>
-              </div>
-              <div className="space-y-4">
-                <p className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest">Legal</p>
-                <ul className="space-y-2 text-sm text-[#86868b] font-medium">
-                  <li><a href="/privacy-policy" className="hover:text-[#0071e3] transition-colors">Privacy Policy</a></li>
-                  <li><a href="/terms-of-service" className="hover:text-[#0071e3] transition-colors">Terms of Service</a></li>
-                  <li><a href="#" className="hover:text-[#0071e3] transition-colors">Cookies</a></li>
-                </ul>
-              </div>
+            <div className="flex flex-col gap-4">
+              <p className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest">Legal</p>
+              <ul className="space-y-3 text-sm text-[#86868b] font-medium">
+                <li><a href="/privacy-policy" className="hover:text-[#0071e3] transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms-of-service" className="hover:text-[#0071e3] transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-[#0071e3] transition-colors">Cookies</a></li>
+              </ul>
             </div>
           </div>
           <div className="pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs font-medium text-[#86868b]">© 2026 Pantry Belt. All rights reserved.</p>
-            <div className="flex gap-6 text-xs font-medium text-[#86868b]">
-              <a href="#" className="hover:text-[#1d1d1f] transition-colors">Twitter</a>
-              <a href="#" className="hover:text-[#1d1d1f] transition-colors">LinkedIn</a>
-              <a href="#" className="hover:text-[#1d1d1f] transition-colors">Instagram</a>
-            </div>
           </div>
         </div>
       </footer>
