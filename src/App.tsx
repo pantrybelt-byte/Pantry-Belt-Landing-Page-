@@ -5,7 +5,7 @@ import WaitlistForm from "./components/WaitlistForm";
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-white/95 selection:bg-[#0071e3]/20 selection:text-[#0071e3] relative">
+    <main className="min-h-screen bg-[#f5f5f7] selection:bg-[#0071e3]/20 selection:text-[#0071e3] relative isolate">
       {/* 3D Background Pattern */}
       <div className="bg-pattern animate-background-drift" />
 
