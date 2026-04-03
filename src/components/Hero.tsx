@@ -44,15 +44,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          className="flex flex-col items-center justify-center"
         >
-          <a href="#waitlist" className="btn-floating px-8 py-4 !rounded-full">
+          <a href="#waitlist" className="btn-floating px-10 py-5 !rounded-full text-lg !font-bold">
             Reserve My Spot
           </a>
-          <button className="btn-secondary group !text-[#0071e3] hover:!text-[#0077ED] !bg-transparent">
-            Learn how it works
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
         </motion.div>
       </motion.div>
 
