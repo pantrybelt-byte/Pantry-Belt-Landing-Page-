@@ -34,7 +34,7 @@ export default function App() {
       <BrandStory />
       <WaitlistForm />
 
-      <footer className="py-20 px-6 bg-[#f5f5f7]/95 relative z-10">
+      <footer className="py-20 px-6 bg-transparent relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="space-y-6 max-w-sm">

@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white/50 text-[#1d1d1f] pt-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent text-[#1d1d1f] pt-20">
       {/* Subtle Background Element */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full opacity-30 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#0071e3]/10 blur-[120px] rounded-full" />
