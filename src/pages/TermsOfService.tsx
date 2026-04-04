@@ -46,7 +46,7 @@ export default function TermsOfService() {
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">5. Contact Us</h3>
             <p className="text-[#86868b] leading-relaxed">
-              For any legal or service inquiries, please contact us at <a href="mailto:hello@pantrybelt.com" className="text-[#0071e3] hover:underline">hello@pantrybelt.com</a>.
+              For any legal or service inquiries, please contact us at <a href="mailto:pantrybelt@gmail.com" className="text-[#0071e3] hover:underline">pantrybelt@gmail.com</a>.
             </p>
           </section>
         </div>
