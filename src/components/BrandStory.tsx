@@ -49,10 +49,10 @@ export default function BrandStory() {
             
             <div className="space-y-6">
               <p className="text-xl text-[#86868b] leading-relaxed font-medium">
-                Pantry Belt started in a small rural town where the nearest food resource was over 30 miles away. We realized that information was just as scarce as the food itself. 
+                Pantry Belt was formed in Montgomery, Alabama, born from a shared passion to improve community awareness and uplift rural, overlooked areas.
               </p>
               <p className="text-lg text-[#86868b]/80 leading-relaxed">
-                Our mission is to ensure that no family in a rural area has to guess where their next meal is coming from. By leveraging modern technology, we bring professional-grade logistics to the heart of our communities.
+                We believe that no family should have to guess where their next meal is coming from. By bridging the gap between local resources and the people who need them most, we are bringing hope and essential support directly to the heart of our communities.
               </p>
             </div>
 
