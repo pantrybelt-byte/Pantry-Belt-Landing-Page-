@@ -30,7 +30,7 @@ export default function ValueProps() {
     <section className="section-padding bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="mb-4">Our Value Propositions</h2>
+          <h2 className="mb-4">How it works</h2>
           <h3 className="text-4xl md:text-5xl font-display font-semibold text-[#1d1d1f] tracking-tight">
             Designed for impact. <br className="md:hidden" /> Built for community.
           </h3>

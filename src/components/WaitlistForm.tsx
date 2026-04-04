@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
@@ -30,11 +30,12 @@ export default function WaitlistForm() {
       return;
     }
 
-    const phoneRegex = /^\+[1-9]\d{1,14}$/;
-    if (!phoneRegex.test(phone)) {
-      setError("Please enter a valid phone number in E.164 format (e.g. +14155552671).");
+    const rawPhone = phone.replace(/\D/g, "");
+    if (rawPhone.length !== 10) {
+      setError("Please enter a valid 10-digit phone number (US network).");
       return;
     }
+    const e164Phone = `+1${rawPhone}`;
 
     if (!consent) {
       setError("You must agree to receive SMS updates to proceed.");
@@ -47,7 +48,7 @@ export default function WaitlistForm() {
       await addDoc(collection(db, 'waitlist'), {
         name: name.trim(),
         email: email.trim(),
-        phone_sms: phone.trim(),
+        phone_sms: e164Phone,
         sms_consent: consent,
         created_at: serverTimestamp()
       });
@@ -147,9 +148,26 @@ export default function WaitlistForm() {
               <input 
                 required
                 type="tel" 
-                placeholder="+14155552671"
+                placeholder="(415) 555-2671"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => {
+                  let val = e.target.value.replace(/\D/g, "");
+                  if (val.length > 10) val = val.slice(0, 10);
+                  
+                  let formatted = val;
+                  if (val.length > 6) {
+                    formatted = `(${val.slice(0, 3)}) ${val.slice(3, 6)}-${val.slice(6)}`;
+                  } else if (val.length > 3) {
+                    formatted = `(${val.slice(0, 3)}) ${val.slice(3)}`;
+                  } else if (val.length > 0) {
+                    formatted = `(${val}`;
+                  }
+                  
+                  // Allow clearing the input completely
+                  if (e.target.value === "") formatted = "";
+                  
+                  setPhone(formatted);
+                }}
                 className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#86868b]/70"
               />
             </div>
@@ -172,10 +190,19 @@ export default function WaitlistForm() {
 
           <button 
             disabled={status === 'submitting'}
-            className="btn-floating w-full shadow-[#0071e3]/30 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
+            className="btn-floating w-full shadow-[#0071e3]/30 flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
           >
-            {status === 'submitting' ? 'Processing...' : 'Reserve My Spot'}
-            <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ml-2" />
+            {status === 'submitting' ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                Processing...
+              </>
+            ) : (
+              <>
+                Reserve My Spot
+                <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ml-2" />
+              </>
+            )}
           </button>
           
           <p className="text-xs text-[#86868b]/80 text-center font-medium">
