@@ -21,16 +21,6 @@ export default function BrandStory() {
                 loading="eager"
               />
             </div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="absolute -bottom-10 -right-10 w-56 h-56 bg-white rounded-[32px] shadow-[0_20px_40px_rgba(0,0,0,0.08)] p-10 flex flex-col justify-center border border-black/5"
-            >
-              <p className="text-4xl font-display font-bold text-[#0071e3] mb-1">100%</p>
-              <p className="text-xs font-bold text-[#86868b] uppercase tracking-widest leading-tight">Community <br />Focused</p>
-            </motion.div>
           </motion.div>
 
           <motion.div
@@ -41,7 +31,13 @@ export default function BrandStory() {
             className="space-y-10"
           >
             <div className="space-y-4">
-              <h2 className="text-[#86868b]">Our Brand Story</h2>
+              <div className="flex items-center gap-4 mb-2">
+                <h2 className="text-[#86868b] !mb-0">Our Brand Story</h2>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0071e3]/10 border border-[#0071e3]/20">
+                  <span className="text-sm font-bold text-[#0071e3]">100%</span>
+                  <span className="text-[10px] font-bold text-[#0071e3] uppercase tracking-widest">Community Focused</span>
+                </div>
+              </div>
               <h3 className="text-5xl md:text-6xl font-display font-semibold text-[#1d1d1f] leading-[1.1] tracking-tight">
                 Born from a need <br /> to bridge the gap.
               </h3>
