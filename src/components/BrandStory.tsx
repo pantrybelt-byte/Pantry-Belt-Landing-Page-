@@ -59,11 +59,19 @@ export default function BrandStory() {
             <div className="pt-8 border-t border-black/5">
               <div className="flex items-center gap-5">
                 <div className="flex -space-x-4">
-                  <div className="w-14 h-14 rounded-full bg-[#f5f5f7] overflow-hidden ring-4 ring-white shadow-sm relative z-10">
-                    <img src="https://picsum.photos/seed/matthew/100/100" alt="Matthew Clarke" referrerPolicy="no-referrer" />
+                  <div className="w-14 h-14 rounded-full bg-[#f5f5f7] overflow-hidden ring-4 ring-white shadow-sm relative z-10 flex items-center justify-center">
+                    <img 
+                      src="/m-clarke.jpg" 
+                      alt="Matthew Clarke" 
+                      className="w-full h-full object-cover object-[center_15%] scale-[1.35] translate-y-1"
+                    />
                   </div>
-                  <div className="w-14 h-14 rounded-full bg-[#f5f5f7] overflow-hidden ring-4 ring-white shadow-sm relative z-0">
-                    <img src="https://picsum.photos/seed/thaddaus/100/100" alt="Thaddaus Sneed" referrerPolicy="no-referrer" />
+                  <div className="w-14 h-14 rounded-full bg-[#f5f5f7] overflow-hidden ring-4 ring-white shadow-sm relative z-0 flex items-center justify-center">
+                    <img 
+                      src="/t-sneed.jpg" 
+                      alt="Thaddaus Sneed" 
+                      className="w-full h-full object-cover object-[center_15%] scale-[1.35] translate-y-1"
+                    />
                   </div>
                 </div>
                 <div>
