@@ -93,7 +93,7 @@ export default function WaitlistForm() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-2xl mx-auto space-y-6 md:space-y-8 bg-white shadow-3d rounded-[var(--radius-apple)] border border-black/5 p-8 md:p-16"
+            className="max-w-2xl mx-auto space-y-6 md:space-y-8 bg-white shadow-3d rounded-[var(--radius-apple)] border border-black/5 p-6 sm:p-8 md:p-16"
           >
             {error && (
               <motion.div 
@@ -208,7 +208,7 @@ export default function WaitlistForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center px-6"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
             style={{ backgroundColor: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(12px)' }}
             onClick={(e) => { if (e.target === e.currentTarget) handleCloseModal(); }}
           >
@@ -218,16 +218,16 @@ export default function WaitlistForm() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-md bg-white rounded-[var(--radius-apple)] shadow-3d border border-black/5 p-10 md:p-14 text-center"
+              className="relative w-full max-w-md bg-white rounded-[var(--radius-apple)] shadow-3d border border-black/5 p-8 sm:p-10 md:p-14 text-center max-h-[95vh] overflow-y-auto"
             >
               {/* Animated checkmark */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 220, damping: 18 }}
-                className="w-20 h-20 bg-[#0071e3]/10 rounded-full flex items-center justify-center mx-auto mb-7"
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0071e3]/10 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-7"
               >
-                <CheckCircle2 className="w-10 h-10 text-[#0071e3]" />
+                <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-[#0071e3]" />
               </motion.div>
 
               {/* Headline */}
@@ -235,7 +235,7 @@ export default function WaitlistForm() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="text-3xl font-display font-semibold text-[#1d1d1f] mb-3 tracking-tight"
+                className="text-2xl sm:text-3xl font-display font-semibold text-[#1d1d1f] mb-3 tracking-tight"
               >
                 You're on the list.
               </motion.h3>
@@ -245,7 +245,7 @@ export default function WaitlistForm() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                className="text-[#86868b] text-base font-medium leading-relaxed mb-10"
+                className="text-[#86868b] text-sm sm:text-base font-medium leading-relaxed mb-8 sm:mb-10"
               >
                 Your spot is reserved. We'll notify you the moment Pantry Belt launches in your area.
               </motion.p>
@@ -257,7 +257,7 @@ export default function WaitlistForm() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
                 onClick={handleCloseModal}
-                className="inline-flex items-center gap-2 px-7 py-3 rounded-[14px] border border-black/10 bg-[#f5f5f7] text-[#1d1d1f] font-semibold text-sm hover:bg-black/8 active:scale-95 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-[14px] border border-black/10 bg-[#f5f5f7] text-[#1d1d1f] font-semibold text-sm hover:bg-black/8 active:scale-95 transition-all duration-200"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Back to Page
