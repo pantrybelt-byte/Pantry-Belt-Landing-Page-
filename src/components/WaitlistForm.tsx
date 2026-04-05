@@ -46,6 +46,10 @@ export default function WaitlistForm() {
     setStatus('submitting');
 
     try {
+      // Mocking Firebase request for now so the UI can be tested
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      /* Firebase integration to be added later
       await addDoc(collection(db, 'waitlist'), {
         name: name.trim(),
         email: email.trim(),
@@ -53,12 +57,13 @@ export default function WaitlistForm() {
         sms_consent: consent,
         created_at: serverTimestamp()
       });
+      */
 
       setStatus('success');
       setShowModal(true);
     } catch (err: any) {
-      console.error("Firebase Error:", err);
-      setError(err.message || 'Something went wrong connecting to the database.');
+      console.error("Mock Error:", err);
+      setError('Something went wrong connecting to the database.');
       setStatus('idle');
     }
   };
