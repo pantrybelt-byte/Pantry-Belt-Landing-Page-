@@ -65,6 +65,20 @@ export default function App() {
                 <li><Link to="/cookies" className="hover:text-[#0071e3] transition-colors">Cookies</Link></li>
               </ul>
             </div>
+
+            <div className="flex flex-col gap-4">
+              <p className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest">Contact Us</p>
+              <ul className="space-y-3 text-sm text-[#86868b] font-medium">
+                <li>
+                  <a
+                    href="mailto:pantrybelt@gmail.com"
+                    className="hover:text-[#0071e3] transition-colors"
+                  >
+                    pantrybelt@gmail.com
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs font-medium text-[#86868b]">© 2026 Pantry Belt. All rights reserved.</p>
