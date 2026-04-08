@@ -46,18 +46,12 @@ export default function WaitlistForm() {
     setStatus('submitting');
 
     try {
-      // Mocking Firebase request for now so the UI can be tested
-      await new Promise(resolve => setTimeout(resolve, 800));
-
-      /* Firebase integration to be added later
       await addDoc(collection(db, 'waitlist'), {
         name: name.trim(),
         email: email.trim(),
         phone_sms: e164Phone,
-        sms_consent: consent,
         created_at: serverTimestamp()
       });
-      */
 
       setStatus('success');
       setShowModal(true);
