@@ -7,6 +7,7 @@ export default function BrandStory() {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   // Only fetch the video when the phone mockup scrolls into view
   useEffect(() => {
@@ -23,12 +24,10 @@ export default function BrandStory() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-play once src is lazily set
-  useEffect(() => {
-    if (videoSrc && videoRef.current) {
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-    }
-  }, [videoSrc]);
+  const handleCanPlay = () => {
+    setIsVideoReady(true);
+    videoRef.current?.play().then(() => setIsPlaying(true)).catch(() => {});
+  };
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -89,6 +88,38 @@ export default function BrandStory() {
                 {/* Screen */}
                 <div className="relative rounded-[44px] overflow-hidden" style={{ aspectRatio: "9/19.5" }}>
 
+                  {/* Branded placeholder — visible until video first frame is ready */}
+                  <div
+                    style={{
+                      position: "absolute", inset: 0,
+                      background: "linear-gradient(160deg, #0a0a0a 0%, #0d1f3c 50%, #0a2a1a 100%)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      opacity: isVideoReady ? 0 : 1,
+                      transition: "opacity 0.5s ease",
+                      pointerEvents: "none",
+                      zIndex: 1,
+                    }}
+                  >
+                    <div style={{ textAlign: "center" }}>
+                      <div style={{
+                        width: 48, height: 48, borderRadius: "50%",
+                        background: "rgba(255,255,255,0.08)",
+                        margin: "0 auto 10px",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                      }}>
+                        <div style={{
+                          width: 16, height: 16, borderRadius: "50%",
+                          border: "2px solid rgba(255,255,255,0.15)",
+                          borderTopColor: "#0071e3",
+                          animation: "spin 0.9s linear infinite",
+                        }} />
+                      </div>
+                      <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 10, letterSpacing: "0.12em", fontWeight: 600 }}>
+                        PANTRYBELT
+                      </span>
+                    </div>
+                  </div>
+
                   {/* Video fills the entire display — src set lazily on scroll-into-view */}
                   <video
                     ref={videoRef}
@@ -96,8 +127,13 @@ export default function BrandStory() {
                     muted
                     loop
                     playsInline
-                    preload="none"
-                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                    preload="metadata"
+                    onCanPlay={handleCanPlay}
+                    style={{
+                      position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
+                      opacity: isVideoReady ? 1 : 0,
+                      transition: "opacity 0.5s ease",
+                    }}
                   />
 
                   {/* Tap to play/pause */}
