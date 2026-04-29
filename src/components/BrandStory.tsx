@@ -1,33 +1,10 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { motion } from "motion/react";
 
 export default function BrandStory() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
-  const [isVideoReady, setIsVideoReady] = useState(false);
-
-  // Only fetch the video when the phone mockup scrolls into view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVideoSrc("/pantrybelt-vid.mp4");
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const handleLoadedData = () => {
-    setIsVideoReady(true);
-    videoRef.current?.play().then(() => setIsPlaying(true)).catch(() => {});
-  };
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -67,7 +44,6 @@ export default function BrandStory() {
 
             {/* iPhone frame */}
             <div
-              ref={containerRef}
               className="relative w-[280px] md:w-[320px]"
               style={{ filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.25))" }}
             >
@@ -88,53 +64,15 @@ export default function BrandStory() {
                 {/* Screen */}
                 <div className="relative rounded-[44px] overflow-hidden" style={{ aspectRatio: "9/19.5" }}>
 
-                  {/* Branded placeholder — visible until video first frame is ready */}
-                  <div
-                    style={{
-                      position: "absolute", inset: 0,
-                      background: "linear-gradient(160deg, #0a0a0a 0%, #0d1f3c 50%, #0a2a1a 100%)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      opacity: isVideoReady ? 0 : 1,
-                      transition: "opacity 0.5s ease",
-                      pointerEvents: "none",
-                      zIndex: 1,
-                    }}
-                  >
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{
-                        width: 48, height: 48, borderRadius: "50%",
-                        background: "rgba(255,255,255,0.08)",
-                        margin: "0 auto 10px",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                      }}>
-                        <div style={{
-                          width: 16, height: 16, borderRadius: "50%",
-                          border: "2px solid rgba(255,255,255,0.15)",
-                          borderTopColor: "#0071e3",
-                          animation: "spin 0.9s linear infinite",
-                        }} />
-                      </div>
-                      <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 10, letterSpacing: "0.12em", fontWeight: 600 }}>
-                        PANTRYBELT
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Video fills the entire display — src set lazily on scroll-into-view */}
+                  {/* Video fills the entire display */}
                   <video
                     ref={videoRef}
-                    src={videoSrc}
-                    poster="/pioneer-1.webp"
+                    src="/pantrybelt-vid.mp4"
+                    autoPlay
                     muted
                     loop
                     playsInline
-                    preload="metadata"
-                    onLoadedData={handleLoadedData}
-                    style={{
-                      position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
-                      opacity: isVideoReady ? 1 : 0,
-                      transition: "opacity 0.6s ease",
-                    }}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
                   />
 
                   {/* Tap to play/pause */}

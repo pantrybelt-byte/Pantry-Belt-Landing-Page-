@@ -24,7 +24,7 @@ export default function App() {
           {/* Center - Standalone Logo */}
           <Link to="/" className="flex justify-center group cursor-pointer">
             <div className="w-14 h-14 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center transition-transform group-hover:scale-105 border border-black/5">
-              <img src="/logo.webp" alt="Logo" className="w-full h-full object-cover scale-[1.08]" />
+              <img src="/logo.png" alt="Logo" className="w-full h-full object-cover scale-[1.08]" />
             </div>
           </Link>
 
@@ -54,7 +54,7 @@ export default function App() {
             <div className="space-y-6 max-w-sm">
               <div className="flex items-center">
                 <Link to="/" className="w-32 h-32 rounded-full overflow-hidden bg-[#f5f5f7] border border-black/5 shrink-0 flex items-center justify-center -ml-4 hover:scale-105 transition-transform">
-                  <img src="/logo.webp" alt="Pantry Belt Logo" className="w-full h-full object-cover scale-[1.08]" />
+                  <img src="/logo.png" alt="Pantry Belt Logo" className="w-full h-full object-cover scale-[1.08]" />
                 </Link>
               </div>
               <p className="text-[#86868b] font-medium text-lg leading-relaxed">
