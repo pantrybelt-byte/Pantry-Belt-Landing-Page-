@@ -1,10 +1,34 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "motion/react";
 
 export default function BrandStory() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
+
+  // Only fetch the video when the phone mockup scrolls into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVideoSrc("/pantrybelt-vid.mp4");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-play once src is lazily set
+  useEffect(() => {
+    if (videoSrc && videoRef.current) {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  }, [videoSrc]);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -44,6 +68,7 @@ export default function BrandStory() {
 
             {/* iPhone frame */}
             <div
+              ref={containerRef}
               className="relative w-[280px] md:w-[320px]"
               style={{ filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.25))" }}
             >
@@ -64,14 +89,14 @@ export default function BrandStory() {
                 {/* Screen */}
                 <div className="relative rounded-[44px] overflow-hidden" style={{ aspectRatio: "9/19.5" }}>
 
-                  {/* Video fills the entire display */}
+                  {/* Video fills the entire display — src set lazily on scroll-into-view */}
                   <video
                     ref={videoRef}
-                    src="/pantrybelt-vid.mp4"
-                    autoPlay
+                    src={videoSrc}
                     muted
                     loop
                     playsInline
+                    preload="none"
                     style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
                   />
 
