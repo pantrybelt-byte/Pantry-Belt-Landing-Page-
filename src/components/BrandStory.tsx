@@ -24,7 +24,7 @@ export default function BrandStory() {
     return () => observer.disconnect();
   }, []);
 
-  const handleCanPlay = () => {
+  const handleLoadedData = () => {
     setIsVideoReady(true);
     videoRef.current?.play().then(() => setIsPlaying(true)).catch(() => {});
   };
@@ -124,15 +124,16 @@ export default function BrandStory() {
                   <video
                     ref={videoRef}
                     src={videoSrc}
+                    poster="/pioneer-1.webp"
                     muted
                     loop
                     playsInline
                     preload="metadata"
-                    onCanPlay={handleCanPlay}
+                    onLoadedData={handleLoadedData}
                     style={{
                       position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
                       opacity: isVideoReady ? 1 : 0,
-                      transition: "opacity 0.5s ease",
+                      transition: "opacity 0.6s ease",
                     }}
                   />
 
