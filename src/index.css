@@ -72,7 +72,7 @@
 }
 
 .bg-pattern {
-  background-image: url('/bg-pattern.png');
+  background-image: url('/bg-pattern.webp');
   background-repeat: repeat;
   background-size: 600px;
   mix-blend-mode: multiply;
