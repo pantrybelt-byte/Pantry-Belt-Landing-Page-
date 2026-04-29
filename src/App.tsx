@@ -1,10 +1,12 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-import Cookies from "./pages/Cookies";
-import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const Cookies = lazy(() => import("./pages/Cookies"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
   return (
@@ -35,13 +37,15 @@ export default function App() {
 
       {/* Page Routing */}
       <div className="relative z-10 pt-20">
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-          <Route path="/cookies" element={<Cookies />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/cookies" element={<Cookies />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </div>
 
       <footer className="py-20 px-6 bg-[#f5f5f7] relative z-10">

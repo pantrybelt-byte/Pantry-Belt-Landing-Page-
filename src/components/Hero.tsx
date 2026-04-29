@@ -56,16 +56,17 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
+        transition={{ delay: 0.2, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         className="mt-20 w-full max-w-6xl px-6"
       >
         <div className="relative aspect-[21/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-white">
           <img 
-            src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2000&auto=format&fit=crop" 
-            alt="Community Volunteers Stocking Pantry" 
+            src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop&fm=webp"
+            alt="Community Volunteers Stocking Pantry"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
             loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-8 left-8 text-white">
