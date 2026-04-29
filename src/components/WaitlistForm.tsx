@@ -56,7 +56,7 @@ export default function WaitlistForm() {
       setStatus('success');
       setShowModal(true);
     } catch (err: any) {
-      console.error("Mock Error:", err);
+      console.error("Firestore write failed:", err);
       setError('Something went wrong connecting to the database.');
       setStatus('idle');
     }
