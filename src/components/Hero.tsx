@@ -60,11 +60,10 @@ export default function Hero() {
         className="mt-20 w-full max-w-6xl px-6"
       >
         <div className="relative aspect-[21/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-white">
-          <img 
-            src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1200&auto=format&fit=crop&fm=webp"
+          <img
+            src="/pioneer-1.jpg"
             alt="Community Volunteers Stocking Pantry"
             className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
             loading="eager"
             fetchPriority="high"
           />
