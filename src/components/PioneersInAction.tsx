@@ -4,17 +4,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    src: "/pioneer-1.webp",
+    src: "/pioneer-1.jpg",
     alt: "Pantry Belt volunteers serving the community",
     caption: "Bringing resources directly to those who need them most.",
   },
   {
-    src: "/pioneer-2.webp",
+    src: "/pioneer-2.jpg",
     alt: "Pantry Belt team in action at a local food pantry",
     caption: "Building stronger communities, one family at a time.",
   },
   {
-    src: "/pioneer-3.webp",
+    src: "/pioneer-3.jpg",
     alt: "Pantry Belt pioneers making a difference",
     caption: "Driven by compassion. Powered by technology.",
   },
