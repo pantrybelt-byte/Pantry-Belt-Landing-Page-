@@ -3,41 +3,69 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Waitlist: public create-only with schema validation
+    // ── Waitlist ───────────────────────────────────────────────────────────────
+    // Landing page only. Public create with strict schema validation; no reads
+    // or mutations from any client.
     match /waitlist/{docId} {
       allow read:             if false;
       allow create:           if isValidWaitlistEntry();
       allow update, delete:   if false;
     }
 
-    // Pantries: read-only public (mobile app)
+    // ── Pantries ───────────────────────────────────────────────────────────────
+    // Read-only for any authenticated session (including Firebase Anonymous Auth).
+    // Requiring auth prevents unauthenticated REST scraping of the entire
+    // collection by bots or competitors.
     match /pantries/{docId} {
-      allow read:             if true;
+      allow read:             if request.auth != null;
       allow write:            if false;
     }
 
-    // Analytics / Searches / Users: deny all from web
+    // ── Analytics ─────────────────────────────────────────────────────────────
+    // The mobile app writes aggregate topic counts to exactly two documents
+    // (searchTopics, zipHeatMap). Any other analytics document is denied.
+    // Anonymous users are blocked from writing analytics to satisfy HIPAA constraints.
+    match /analytics/searchTopics {
+      allow read:             if false;
+      allow write:            if request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+    match /analytics/zipHeatMap {
+      allow read:             if false;
+      allow write:            if request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
     match /analytics/{docId=**} {
-      allow read, write: if false;
+      allow read, write:      if false;
     }
+
+    // ── Users ─────────────────────────────────────────────────────────────────
+    // Each authenticated user may read and write only their own document.
+    // Anonymous users are blocked from users collection to comply with HIPAA safeguards.
+    // No user can access another user's document.
+    match /users/{userId} {
+      allow read, write:      if request.auth != null 
+                              && request.auth.uid == userId 
+                              && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+
+    // ── Searches ──────────────────────────────────────────────────────────────
+    // Cloud Functions only. No direct client access.
     match /searches/{docId=**} {
-      allow read, write: if false;
-    }
-    match /users/{docId=**} {
-      allow read, write: if false;
+      allow read, write:      if false;
     }
 
-    // Mail: Deny all web client access (used by Cloud Functions only)
+    // ── Mail ──────────────────────────────────────────────────────────────────
+    // Populated by Cloud Functions (e.g. waitlist confirmation). No client access.
     match /mail/{docId} {
-      allow read, write: if false;
+      allow read, write:      if false;
     }
 
-    // Deny everything else by default
+    // ── Default deny ──────────────────────────────────────────────────────────
+    // Any collection not explicitly listed above is denied to all clients.
     match /{document=**} {
-      allow read, write: if false;
+      allow read, write:      if false;
     }
 
-    // Validation function for waitlist entries
+    // ── Validation helpers ─────────────────────────────────────────────────────
     function isValidWaitlistEntry() {
       let d = request.resource.data;
       return d.keys().hasAll(['name', 'email', 'phone_sms', 'created_at'])
