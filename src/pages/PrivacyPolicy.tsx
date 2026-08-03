@@ -18,11 +18,11 @@ export default function PrivacyPolicy() {
           <div className="p-8 rounded-2xl bg-[#f5f5f7] border border-[#0071e3]/10">
             <h2 className="text-[#0071e3] text-xl font-bold tracking-tight mb-4 normal-case">Our Promise to You</h2>
             <p className="text-lg leading-relaxed font-medium">
-              At Pantry Belt, we believe trust is just as essential as the food resources we connect you with. 
+              At Access Belt, we believe trust is just as essential as the food resources we connect you with.
               <strong> We will never share, sell, or distribute your personal data to any third party.</strong> 
             </p>
             <p className="mt-4 text-[#86868b] leading-relaxed">
-              Any information you provide, including your name, email, and phone number, is strictly used to send you internal Pantry Belt emails, newsletters, and critical app updates. Your privacy is paramount.
+              Any information you provide, including your name, email, and phone number, is strictly used to send you internal Access Belt emails, newsletters, and critical app updates. Your privacy is paramount.
             </p>
           </div>
 
@@ -36,10 +36,10 @@ export default function PrivacyPolicy() {
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">2. How We Use Your Information</h3>
             <p className="text-[#86868b] leading-relaxed">
-              The data we collect is utilized exclusively for direct communication from the Pantry Belt team. We use your contact information to:
+              The data we collect is utilized exclusively for direct communication from the Access Belt team. We use your contact information to:
             </p>
             <ul className="list-disc pl-6 text-[#86868b] space-y-2">
-              <li>Send you updates on when Pantry Belt will launch in your area.</li>
+              <li>Send you updates on when Access Belt will launch in your area.</li>
               <li>Distribute our official newsletters containing community impact stories.</li>
               <li>Provide essential notifications about the application itself.</li>
             </ul>
@@ -48,14 +48,14 @@ export default function PrivacyPolicy() {
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">3. Data Security</h3>
             <p className="text-[#86868b] leading-relaxed">
-              We implement industry-standard security protocols to protect your personal information. Our databases are encrypted, and access is strictly limited to authorized Pantry Belt personnel.
+              We implement industry-standard security protocols to protect your personal information. Our databases are encrypted, and access is strictly limited to authorized Access Belt personnel.
             </p>
           </section>
 
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">4. Contact Us</h3>
             <p className="text-[#86868b] leading-relaxed">
-              If you have any questions or concerns regarding this Privacy Policy or how your data is handled, please reach out to us directly at <a href="mailto:pantrybelt@gmail.com" className="text-[#0071e3] hover:underline">pantrybelt@gmail.com</a>.
+              If you have any questions or concerns regarding this Privacy Policy or how your data is handled, please reach out to us directly at <a href="mailto:getaccessbelt@gmail.com" className="text-[#0071e3] hover:underline">getaccessbelt@gmail.com</a>.
             </p>
           </section>
         </div>

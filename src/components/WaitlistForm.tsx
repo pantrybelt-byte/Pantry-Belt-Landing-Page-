@@ -170,7 +170,7 @@ export default function WaitlistForm() {
                 />
               </div>
               <span className="text-xs leading-relaxed text-[#86868b] font-medium">
-                By checking this box, you consent to receive recurring marketing text messages (e.g., updates, waitlist status) from Pantry Belt at the number provided. Consent is not a condition of obtaining any service. Reply STOP to cancel. Msg & data rates may apply.
+                By checking this box, you consent to receive recurring marketing text messages (e.g., updates, waitlist status) from Access Belt at the number provided. Consent is not a condition of obtaining any service. Reply STOP to cancel. Msg & data rates may apply.
               </span>
             </label>
 
@@ -246,7 +246,7 @@ export default function WaitlistForm() {
                 transition={{ delay: 0.4, duration: 0.5 }}
                 className="text-[#86868b] text-sm sm:text-base font-medium leading-relaxed mb-8 sm:mb-10"
               >
-                Your spot is reserved. We'll notify you the moment Pantry Belt launches in your area.
+                Your spot is reserved. We'll notify you the moment Access Belt launches in your area.
               </motion.p>
 
               {/* Back button */}

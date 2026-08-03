@@ -54,7 +54,7 @@ export default function App() {
             <div className="space-y-6 max-w-sm">
               <div className="flex items-center">
                 <Link to="/" className="w-32 h-32 rounded-full overflow-hidden bg-[#f5f5f7] border border-black/5 shrink-0 flex items-center justify-center -ml-4 hover:scale-105 transition-transform">
-                  <img src="/logo.png" alt="Pantry Belt Logo" className="w-full h-full object-cover scale-[1.08]" />
+                  <img src="/logo.png" alt="Access Belt Logo" className="w-full h-full object-cover scale-[1.08]" />
                 </Link>
               </div>
               <p className="text-[#86868b] font-medium text-lg leading-relaxed">
@@ -75,17 +75,17 @@ export default function App() {
               <ul className="space-y-3 text-sm text-[#86868b] font-medium">
                 <li>
                   <a
-                    href="mailto:pantrybelt@gmail.com"
+                    href="mailto:getaccessbelt@gmail.com"
                     className="hover:text-[#0071e3] transition-colors"
                   >
-                    pantrybelt@gmail.com
+                    getaccessbelt@gmail.com
                   </a>
                 </li>
               </ul>
             </div>
           </div>
           <div className="pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs font-medium text-[#86868b]">© 2026 Pantry Belt. All rights reserved.</p>
+            <p className="text-xs font-medium text-[#86868b]">© 2026 Access Belt. All rights reserved.</p>
           </div>
         </div>
       </footer>
