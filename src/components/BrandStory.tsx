@@ -67,7 +67,7 @@ export default function BrandStory() {
                   {/* Video fills the entire display */}
                   <video
                     ref={videoRef}
-                    src="/pantrybelt-vid.mp4"
+                    src="/accessbelt.mp4"
                     autoPlay
                     muted
                     loop
