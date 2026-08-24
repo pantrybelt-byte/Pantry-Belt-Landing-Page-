@@ -25,7 +25,7 @@ export default function Cookies() {
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">2. How We Use Cookies</h3>
             <p className="text-[#86868b] leading-relaxed">
-              Access Belt uses a minimal, strictly necessary cookie footprint. We use cookies primarily for:
+              AccessBelt uses a minimal, strictly necessary cookie footprint. We use cookies primarily for:
             </p>
             <ul className="list-disc pl-6 text-[#86868b] space-y-2">
               <li><strong>Session Management:</strong> Remembering if you have already joined our waitlist to prevent duplicate forms.</li>
@@ -37,14 +37,14 @@ export default function Cookies() {
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">3. Third-Party Tracking</h3>
             <p className="text-[#86868b] leading-relaxed">
-              In alignment with our strict privacy focus, we do <strong>not</strong> utilize invasive third-party tracking cookies, advertising pixels, or cross-site fingerprinting technologies. Your browsing habits on Access Belt remain your own business.
+              In alignment with our strict privacy focus, we do <strong>not</strong> utilize invasive third-party tracking cookies, advertising pixels, or cross-site fingerprinting technologies. Your browsing habits on AccessBelt remain your own business.
             </p>
           </section>
 
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">4. Managing Your Preferences</h3>
             <p className="text-[#86868b] leading-relaxed">
-              Most modern web browsers allow you to manage or delete cookies through browser settings. Please note that disabling strictly necessary cookies may impact the performance and functionality of the Access Belt application.
+              Most modern web browsers allow you to manage or delete cookies through browser settings. Please note that disabling strictly necessary cookies may impact the performance and functionality of the AccessBelt application.
             </p>
           </section>
         </div>

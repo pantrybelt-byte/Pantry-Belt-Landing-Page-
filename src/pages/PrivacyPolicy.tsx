@@ -18,11 +18,11 @@ export default function PrivacyPolicy() {
           <div className="p-8 rounded-2xl bg-[#f5f5f7] border border-[#0071e3]/10">
             <h2 className="text-[#0071e3] text-xl font-bold tracking-tight mb-4 normal-case">Our Promise to You</h2>
             <p className="text-lg leading-relaxed font-medium">
-              At Access Belt, we believe trust is just as essential as the food resources we connect you with.
+              At AccessBelt, we believe trust is just as essential as the food resources we connect you with.
               <strong> We will never sell your personal data, and we never share it with third parties for their own marketing purposes.</strong>
             </p>
             <p className="mt-4 text-[#86868b] leading-relaxed">
-              This policy covers two things: this website (where you can join our waitlist or read updates) and the Access Belt mobile app itself. The mobile app works without creating an account — you can find and contact food pantries fully anonymously.
+              This policy covers two things: this website (where you can join our waitlist or read updates) and the AccessBelt mobile app itself. The mobile app works without creating an account — you can find and contact food pantries fully anonymously.
             </p>
           </div>
 
@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
               If you join our waitlist or sign up for updates, we collect only what you provide: your name, email address, and mobile phone number.
             </p>
 
-            <h4 className="text-lg font-semibold text-[#1d1d1f] mt-4">The Access Belt mobile app</h4>
+            <h4 className="text-lg font-semibold text-[#1d1d1f] mt-4">The AccessBelt mobile app</h4>
             <p className="text-[#86868b] leading-relaxed">
               The app uses anonymous authentication by default — no name, email, or phone number is required to search for pantries, view details, or contact a pantry directly. Depending on what you choose to use, the app may collect:
             </p>
@@ -75,21 +75,21 @@ export default function PrivacyPolicy() {
               <li><strong>Google Gemini API</strong> — powers Pete's responses. Messages are sent to Google to generate a reply; they are not used by Google to train models on our data.</li>
             </ul>
             <p className="text-[#86868b] leading-relaxed">
-              Aggregated, county-level impact statistics (e.g. "1,200 pantry visits logged in Dallas County this month") are shared with the food banks and government agencies that help fund Access Belt. These reports never identify individual users.
+              Aggregated, county-level impact statistics (e.g. "1,200 pantry visits logged in Dallas County this month") are shared with the food banks and government agencies that help fund AccessBelt. These reports never identify individual users.
             </p>
           </section>
 
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">5. Data Security</h3>
             <p className="text-[#86868b] leading-relaxed">
-              We implement industry-standard security protocols to protect your information, including encrypted connections and database access rules that restrict who can read or write data. Access is limited to authorized Access Belt personnel.
+              We implement industry-standard security protocols to protect your information, including encrypted connections and database access rules that restrict who can read or write data. Access is limited to authorized AccessBelt personnel.
             </p>
           </section>
 
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">6. Children's Privacy</h3>
             <p className="text-[#86868b] leading-relaxed">
-              The Access Belt app is intended for users age 13 and older. The optional "About You" profile is not available to anyone reporting an age below 13. We do not knowingly collect personal information from children under 13.
+              The AccessBelt app is intended for users age 13 and older. The optional "About You" profile is not available to anyone reporting an age below 13. We do not knowingly collect personal information from children under 13.
             </p>
           </section>
 

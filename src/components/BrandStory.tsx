@@ -117,7 +117,7 @@ export default function BrandStory() {
 
                     <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#34c759] animate-pulse" />
-                      <span className="text-white text-[10px] font-semibold tracking-wide">Access Belt</span>
+                      <span className="text-white text-[10px] font-semibold tracking-wide">AccessBelt</span>
                     </div>
                   </div>
 
@@ -148,7 +148,7 @@ export default function BrandStory() {
             
             <div className="space-y-6">
               <p className="text-xl text-[#86868b] leading-relaxed font-medium">
-                Access Belt was formed in Montgomery, Alabama, born from a shared passion to improve community awareness and uplift rural, overlooked areas.
+                AccessBelt was formed in Montgomery, Alabama, born from a shared passion to improve community awareness and uplift rural, overlooked areas.
               </p>
               <p className="text-lg text-[#86868b]/80 leading-relaxed">
                 We believe that no family should have to guess where their next meal is coming from. By bridging the gap between local resources and the people who need them most, we are bringing hope and essential support directly to the heart of our communities.
@@ -175,7 +175,7 @@ export default function BrandStory() {
                 </div>
                 <div>
                   <p className="font-bold text-[#1d1d1f] text-lg">Matthew Clarke & Thaddaus Sneed</p>
-                  <p className="text-[#86868b] text-sm font-medium uppercase tracking-wider">Founders, Access Belt</p>
+                  <p className="text-[#86868b] text-sm font-medium uppercase tracking-wider">Founders, AccessBelt</p>
                 </div>
               </div>
             </div>
