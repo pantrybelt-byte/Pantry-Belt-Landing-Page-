@@ -4,22 +4,22 @@ import { Search, Navigation, Bell } from "lucide-react";
 const props = [
   {
     id: 1,
-    title: "Real-time Locating",
-    description: "Find active pantries in even the most remote rural areas with our precision mapping technology.",
+    title: "Community Directory",
+    description: "Locate listed food pantries across rural areas with interactive mapping and crowd-sourced status updates.",
     icon: Search,
     color: "text-blue-500"
   },
   {
     id: 2,
     title: "Smart Navigation",
-    description: "Get optimized routes that consider rural road conditions and pantry operating hours.",
+    description: "Get optimized directions and direct phone contacts for regional food assistance programs.",
     icon: Navigation,
     color: "text-green-500"
   },
   {
     id: 3,
-    title: "Instant Notifications",
-    description: "Receive alerts when local pantries receive fresh stock or change their distribution times.",
+    title: "Community Updates",
+    description: "Receive notifications when local pantries share distribution schedule updates or community alerts.",
     icon: Bell,
     color: "text-orange-500"
   }
