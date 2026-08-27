@@ -24,10 +24,24 @@ export default function TermsOfService() {
           </section>
 
           <section className="space-y-4">
-            <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">2. Description of Service & FTC Informational Positioning</h3>
+            <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">2. Description of Service & Government Non-Affiliation</h3>
             <p className="text-[#86868b] leading-relaxed">
               AccessBelt is an independent informational directory and logistical resource platform designed to connect individuals and families to food pantries, emergency food programs, SNAP/EBT resources, and community aid. 
             </p>
+            <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/60 text-sm text-amber-950 space-y-2">
+              <p className="font-semibold">
+                Government Non-Affiliation Notice:
+              </p>
+              <p>
+                AccessBelt is a private, community-driven resource directory and is <strong>NOT affiliated with, endorsed by, authorized by, or representing any federal, state, county, or municipal government entity or agency</strong>. All government assistance program information (such as SNAP, WIC, and Free School Meals) is aggregated for public convenience from official government domains, including:
+              </p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>USDA Food & Nutrition Service: <a href="https://www.fns.usda.gov" target="_blank" rel="noopener noreferrer" className="underline font-medium">fns.usda.gov</a></li>
+                <li>Alabama Public Health (WIC): <a href="https://www.alabamapublichealth.gov" target="_blank" rel="noopener noreferrer" className="underline font-medium">alabamapublichealth.gov</a></li>
+                <li>Benefits.gov: <a href="https://www.benefits.gov" target="_blank" rel="noopener noreferrer" className="underline font-medium">benefits.gov</a></li>
+                <li>Alabama Department of Human Resources: <a href="https://dhr.alabama.gov" target="_blank" rel="noopener noreferrer" className="underline font-medium">dhr.alabama.gov</a></li>
+              </ul>
+            </div>
             <p className="text-[#86868b] leading-relaxed font-medium">
               AccessBelt does not operate, manage, control, stock, or guarantee any third-party food pantry, government assistance program, or distribution center. All listings are for general informational purposes only.
             </p>
