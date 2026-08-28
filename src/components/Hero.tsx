@@ -27,14 +27,14 @@ export default function Hero() {
         
         <h1 className="mb-8 tracking-tight font-semibold text-gradient-blue">
           Be a part of the change. <br />
-          <span className="text-[#86868b]/80">Join the pantry pioneers.</span>
+          <span className="text-[#6e6e73]">Join the pantry pioneers.</span>
         </h1>
         
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-xl md:text-2xl text-[#86868b] mb-12 max-w-2xl mx-auto font-medium"
+          className="text-xl md:text-2xl text-[#6e6e73] mb-12 max-w-2xl mx-auto font-medium"
         >
           Connecting rural communities with local food resources. <br className="hidden md:block" />
           Simple, essential, and life-changing.

@@ -30,10 +30,10 @@ export default function ValueProps() {
     <section className="section-padding bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="mb-4">How it works</h2>
-          <h3 className="text-4xl md:text-5xl font-display font-semibold text-[#1d1d1f] tracking-tight">
+          <p className="section-label mb-4">How it works</p>
+          <h2 className="text-4xl md:text-5xl font-display font-semibold text-[#1d1d1f] tracking-tight">
             Designed for impact. <br className="md:hidden" /> Built for community.
-          </h3>
+          </h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-[1000px]">
@@ -54,10 +54,10 @@ export default function ValueProps() {
               className="group p-10 rounded-[var(--radius-apple)] bg-[#f5f5f7] border border-transparent hover:bg-white shadow-3d hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] transition-all duration-500"
             >
               <div className={`${prop.color} mb-8 transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100`}>
-                <prop.icon size={40} strokeWidth={1.5} />
+                <prop.icon size={40} strokeWidth={1.5} aria-hidden="true" />
               </div>
-              <h4 className="text-2xl font-display font-semibold mb-4 text-[#1d1d1f]">{prop.title}</h4>
-              <p className="text-[#86868b] text-base leading-relaxed font-medium">
+              <h3 className="text-2xl font-display font-semibold mb-4 text-[#1d1d1f]">{prop.title}</h3>
+              <p className="text-[#6e6e73] text-base leading-relaxed font-medium">
                 {prop.description}
               </p>
             </motion.div>

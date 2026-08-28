@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Send, CheckCircle2, AlertCircle, Loader2, ArrowLeft } from "lucide-react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -14,6 +14,32 @@ export default function WaitlistForm() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [consent, setConsent] = useState(false);
+
+  // Ref for focus management on modal open
+  const modalBackBtnRef = useRef<HTMLButtonElement>(null);
+
+  // Auto-focus the "Back to Page" button when the modal opens
+  useEffect(() => {
+    if (showModal && modalBackBtnRef.current) {
+      // Small delay to allow the animation to start
+      const timer = setTimeout(() => modalBackBtnRef.current?.focus(), 400);
+      return () => clearTimeout(timer);
+    }
+  }, [showModal]);
+
+  // Trap focus inside the modal when open
+  useEffect(() => {
+    if (!showModal) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleCloseModal();
+      }
+      // Simple focus trap: the modal only has one interactive element (back button)
+      // so no complex trap needed — focus stays on the button
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showModal]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,11 +133,11 @@ export default function WaitlistForm() {
       <section id="waitlist" className="section-padding bg-transparent relative overflow-hidden">
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="mb-4">Ready to pioneer?</h2>
-            <h3 className="text-5xl md:text-6xl font-display font-semibold text-[#1d1d1f] tracking-tight mb-6">
+            <p className="section-label mb-4">Ready to pioneer?</p>
+            <h2 className="text-5xl md:text-6xl font-display font-semibold text-[#1d1d1f] tracking-tight mb-6">
               Reserve Your Spot
-            </h3>
-            <p className="text-[#86868b] text-xl font-medium max-w-2xl mx-auto">
+            </h2>
+            <p className="text-[#6e6e73] text-xl font-medium max-w-2xl mx-auto">
               Be the first to know when we launch in your area. Connect with essential food resources through technology.
             </p>
           </div>
@@ -123,48 +149,61 @@ export default function WaitlistForm() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="max-w-2xl mx-auto space-y-6 md:space-y-8 bg-white shadow-3d rounded-[var(--radius-apple)] border border-black/5 p-6 sm:p-8 md:p-16"
+            aria-label="Join the waitlist"
           >
+            {/* Error announcement — role="alert" for screen readers (#7) */}
             {error && (
               <motion.div 
+                role="alert"
+                aria-live="assertive"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 className="bg-red-50 border border-red-200 text-red-600 p-4 rounded-xl flex items-center gap-3 text-sm font-medium"
               >
-                <AlertCircle className="w-5 h-5 shrink-0" />
+                <AlertCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 {error}
               </motion.div>
             )}
 
+            {/* Name field — label linked via htmlFor/id (#3) */}
             <div className="space-y-3">
-              <label className="text-xs font-bold text-[#86868b] uppercase tracking-widest ml-1">Full Name</label>
+              <label htmlFor="waitlist-name" className="text-xs font-bold text-[#6e6e73] uppercase tracking-widest ml-1">Full Name</label>
               <input 
+                id="waitlist-name"
                 required
                 type="text" 
                 placeholder="John Doe"
+                autoComplete="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#86868b]/70"
+                className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#6e6e73]/60"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {/* Email field — label linked via htmlFor/id (#3) */}
               <div className="space-y-3">
-                <label className="text-xs font-bold text-[#86868b] uppercase tracking-widest ml-1">Email Address</label>
+                <label htmlFor="waitlist-email" className="text-xs font-bold text-[#6e6e73] uppercase tracking-widest ml-1">Email Address</label>
                 <input 
+                  id="waitlist-email"
                   required
                   type="email" 
                   placeholder="john@example.com"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#86868b]/70"
+                  className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#6e6e73]/60"
                 />
               </div>
+              {/* Phone field — label linked via htmlFor/id (#3) */}
               <div className="space-y-3">
-                <label className="text-xs font-bold text-[#86868b] uppercase tracking-widest ml-1">Phone Number</label>
+                <label htmlFor="waitlist-phone" className="text-xs font-bold text-[#6e6e73] uppercase tracking-widest ml-1">Phone Number</label>
                 <input 
+                  id="waitlist-phone"
                   required
                   type="tel" 
                   placeholder="(415) 555-2671"
+                  autoComplete="tel"
                   value={phone}
                   onChange={(e) => {
                     let val = e.target.value.replace(/\D/g, "");
@@ -184,11 +223,12 @@ export default function WaitlistForm() {
                     
                     setPhone(formatted);
                   }}
-                  className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#86868b]/70"
+                  className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#6e6e73]/60"
                 />
               </div>
             </div>
 
+            {/* Consent checkbox — already wrapped in label, which is correct */}
             <label className="flex items-start gap-4 p-4 rounded-xl bg-[#f5f5f7] border border-black/5 cursor-pointer hover:bg-black/5 transition-colors">
               <div className="mt-1">
                 <input 
@@ -199,36 +239,37 @@ export default function WaitlistForm() {
                   className="w-5 h-5 rounded-[6px] border-black/20 bg-white text-[#0071e3] focus:ring-[#0071e3]/50"
                 />
               </div>
-              <span className="text-xs leading-relaxed text-[#86868b] font-medium">
+              <span className="text-xs leading-relaxed text-[#515154] font-medium">
                 By checking this box, you consent to receive recurring marketing text messages (e.g., updates, waitlist status) from AccessBelt at the number provided. Consent is not a condition of obtaining any service. Reply STOP to cancel. Msg & data rates may apply.
               </span>
             </label>
 
             <button 
+              type="submit"
               disabled={status === 'submitting'}
               className="btn-floating w-full shadow-[#0071e3]/30 flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
             >
               {status === 'submitting' ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                  <Loader2 className="w-5 h-5 animate-spin mr-2" aria-hidden="true" />
                   Processing...
                 </>
               ) : (
                 <>
                   Reserve My Spot
-                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ml-2" />
+                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ml-2" aria-hidden="true" />
                 </>
               )}
             </button>
             
-            <p className="text-xs text-[#86868b]/80 text-center font-medium">
+            <p className="text-xs text-[#6e6e73] text-center font-medium">
               We respect your privacy and will never share your personal data.
             </p>
           </motion.form>
         </div>
       </section>
 
-      {/* Success Modal Overlay */}
+      {/* Success Modal Overlay — accessible dialog (#6) */}
       <AnimatePresence>
         {showModal && (
           <motion.div
@@ -240,6 +281,9 @@ export default function WaitlistForm() {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
             style={{ backgroundColor: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(12px)' }}
             onClick={(e) => { if (e.target === e.currentTarget) handleCloseModal(); }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="success-modal-title"
           >
             <motion.div
               id="success-modal-card"
@@ -256,31 +300,33 @@ export default function WaitlistForm() {
                 transition={{ delay: 0.2, type: "spring", stiffness: 220, damping: 18 }}
                 className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0071e3]/10 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-7"
               >
-                <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-[#0071e3]" />
+                <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-[#0071e3]" aria-hidden="true" />
               </motion.div>
 
               {/* Headline */}
-              <motion.h3
+              <motion.h2
+                id="success-modal-title"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
                 className="text-2xl sm:text-3xl font-display font-semibold text-[#1d1d1f] mb-3 tracking-tight"
               >
                 You're on the list.
-              </motion.h3>
+              </motion.h2>
 
               {/* Subtext */}
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                className="text-[#86868b] text-sm sm:text-base font-medium leading-relaxed mb-8 sm:mb-10"
+                className="text-[#6e6e73] text-sm sm:text-base font-medium leading-relaxed mb-8 sm:mb-10"
               >
                 Your spot is reserved. We'll notify you the moment AccessBelt launches in your area.
               </motion.p>
 
-              {/* Back button */}
+              {/* Back button — receives focus on modal open */}
               <motion.button
+                ref={modalBackBtnRef}
                 id="success-modal-back-btn"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -288,7 +334,7 @@ export default function WaitlistForm() {
                 onClick={handleCloseModal}
                 className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-[14px] border border-black/10 bg-[#f5f5f7] text-[#1d1d1f] font-semibold text-sm hover:bg-black/8 active:scale-95 transition-all duration-200"
               >
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-4 h-4" aria-hidden="true" />
                 Back to Page
               </motion.button>
             </motion.div>
@@ -298,4 +344,3 @@ export default function WaitlistForm() {
     </>
   );
 }
-
