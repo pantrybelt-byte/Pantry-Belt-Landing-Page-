@@ -18,28 +18,28 @@ export default function TermsOfService() {
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">1. Acceptance of Terms</h3>
             <p className="text-[#86868b] leading-relaxed">
-              By accessing and using Access Belt, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must not use our software or services.
+              By accessing and using AccessBelt, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must not use our software or services.
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">2. Description of Service</h3>
-            <p className="text-[#86868b] leading-relaxed">
-              Access Belt is a technology platform designed to bridge the gap between rural communities and essential food resources. We provide logistical routing, real-time pantry status updates, and notifications for community support.
+          <section>
+            <h2 className="text-xl font-bold text-slate-800 mb-2">2. Description of Service</h2>
+            <p className="text-slate-600 leading-relaxed">
+              AccessBelt is a technology platform designed to bridge the gap between rural communities and essential food resources. We provide logistical routing, real-time pantry status updates, and notifications for community support.
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">3. User Responsibilities</h3>
-            <p className="text-[#86868b] leading-relaxed">
-              You agree to use our platform strictly for legitimate informational and logistical purposes. Any abuse of the platform, including providing false information, scraping data, or attempting to compromise the security of other users, will result in immediate termination of access.
+          <section>
+            <h2 className="text-xl font-bold text-slate-800 mb-2">3. User Responsibilities</h2>
+            <p className="text-slate-600 leading-relaxed">
+              You agree to provide accurate and truthful information when joining our waitlist or interacting with our community features. You agree not to misuse the platform, attempt unauthorized access, or harass other users or community partners.
             </p>
           </section>
-          
-          <section className="space-y-4">
-            <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">4. Limitation of Liability</h3>
-            <p className="text-[#86868b] leading-relaxed">
-              While we strive to provide accurate, real-time information regarding food resources, Access Belt operates as an intermediary informational service. We are not liable for the operational status of individual pantries, the availability of food items, or any damages arising from your physical travel to said locations.
+
+          <section>
+            <h2 className="text-xl font-bold text-slate-800 mb-2">4. Disclaimers & Limitation of Liability</h2>
+            <p className="text-slate-600 leading-relaxed">
+              While we strive to provide accurate, real-time information regarding food resources, AccessBelt operates as an intermediary informational service. We are not liable for the operational status of individual pantries, the availability of food items, or any damages arising from your physical travel to said locations.
             </p>
           </section>
 

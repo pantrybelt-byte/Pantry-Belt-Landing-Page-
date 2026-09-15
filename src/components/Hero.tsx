@@ -69,7 +69,7 @@ export default function Hero() {
         <div className="relative aspect-[16/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-white">
           <img
             src="/pioneers-hero.png"
-            alt="The Pantry Pioneers - Founders Matthew Clarke and Thaddeus Sneed presenting Access Belt"
+            alt="The Pantry Pioneers - Founders Matthew Clarke and Thaddeus Sneed presenting AccessBelt"
             className="w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"

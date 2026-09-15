@@ -145,10 +145,10 @@ export default function BrandStory() {
             </div>
             
             <div className="space-y-6">
-              <p className="text-xl text-[#86868b] leading-relaxed font-medium">
-                Access Belt was formed in Montgomery, Alabama, born from a shared passion to improve community awareness and uplift rural, overlooked areas.
+              <p className="text-xl text-[#555558] leading-relaxed font-medium">
+                AccessBelt was formed in Montgomery, Alabama, born from a shared passion to improve community awareness and uplift rural, overlooked areas.
               </p>
-              <p className="text-lg text-[#86868b]/80 leading-relaxed">
+              <p className="text-lg text-[#555558]/90 leading-relaxed">
                 We believe that no family should have to guess where their next meal is coming from. By bridging the gap between local resources and the people who need them most, we are bringing hope and essential support directly to the heart of our communities.
               </p>
             </div>
@@ -166,14 +166,14 @@ export default function BrandStory() {
                   <div className="w-14 h-14 rounded-full bg-[#f5f5f7] overflow-hidden ring-4 ring-white shadow-sm relative z-0 flex items-center justify-center">
                     <img 
                       src="/t-sneed.jpg" 
-                      alt="Thaddaus Sneed" 
+                      alt="Thaddeus Sneed" 
                       className="w-full h-full object-cover object-[center_15%] scale-[1.35] translate-y-1"
                     />
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-[#1d1d1f] text-lg">Matthew Clarke & Thaddaus Sneed</p>
-                  <p className="text-[#86868b] text-sm font-medium uppercase tracking-wider">Founders, Access Belt</p>
+                  <p className="font-bold text-[#1d1d1f] text-lg">Matthew Clarke & Thaddeus Sneed</p>
+                  <p className="text-[#555558] text-sm font-medium uppercase tracking-wider">Founders, AccessBelt</p>
                 </div>
               </div>
             </div>

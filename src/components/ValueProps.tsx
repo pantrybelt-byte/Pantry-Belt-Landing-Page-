@@ -5,21 +5,21 @@ const props = [
   {
     id: 1,
     title: "Real-time Locating",
-    description: "Find active pantries in even the most remote rural areas with our precision mapping technology.",
+    description: "Find active, verified pantries in rural and underserved areas with clear interactive map search.",
     icon: Search,
     color: "text-blue-500"
   },
   {
     id: 2,
-    title: "Smart Navigation",
-    description: "Get optimized routes that consider rural road conditions and pantry operating hours.",
+    title: "Verified Directions",
+    description: "Get 1-tap navigation to verified pantries, complete with confirmed operating schedules and eligibility rules.",
     icon: Navigation,
     color: "text-green-500"
   },
   {
     id: 3,
-    title: "Instant Notifications",
-    description: "Receive alerts when local pantries receive fresh stock or change their distribution times.",
+    title: "Community Alerts",
+    description: "Receive timely updates on distribution schedules, mobile pantry drop sites, and emergency food relief.",
     icon: Bell,
     color: "text-orange-500"
   }
