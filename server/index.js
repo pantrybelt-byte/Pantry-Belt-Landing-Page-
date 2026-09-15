@@ -68,16 +68,16 @@ app.post('/api/waitlist', async (req, res) => {
     // 4. Send Confirmation Email via Sendgrid
     await sendgridMock.send({
       to: email,
-      from: 'hello@pantrybelt.com',
-      subject: 'Welcome to the Pantry Belt Waitlist!',
-      text: `Hi ${name},\n\nThank you for reserving your spot. We will notify you when Pantry Belt is available in your area.\n\nBest,\nThe Pantry Belt Team`
+      from: 'getaccessbelt@gmail.com',
+      subject: 'Welcome to the Access Belt Waitlist!',
+      text: `Hi ${name},\n\nThank you for reserving your spot. We will notify you when Access Belt is available in your area.\n\nBest,\nThe Access Belt Team`
     });
 
     // 5. Send A2P Compliant SMS Confirmation via Twilio
     // Note: Ensuring the first message complies with opt-out requirements
     if (consent) {
       await twilioMock.messages.create({
-        body: `Pantry Belt: Hi ${name}, you're on the waitlist! We'll text you updates. Reply STOP to opt out.`,
+        body: `Access Belt: Hi ${name}, you're on the waitlist! We'll text you updates. Reply STOP to opt out.`,
         from: process.env.TWILIO_PHONE_NUMBER || '+15550000000',
         to: phone
       });
