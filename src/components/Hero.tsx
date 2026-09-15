@@ -49,8 +49,8 @@ export default function Hero() {
           <a href="#waitlist" className="btn-floating px-10 py-5 !rounded-full text-lg !font-bold">
             Reserve My Spot
           </a>
-          <p className="text-xs md:text-sm font-semibold text-[#555558] flex items-center gap-2">
-            <span>✨ 100% Free</span>
+          <p className="text-xs md:text-sm font-medium text-[#555558] flex items-center gap-2 tracking-wide">
+            <span>100% Free</span>
             <span>·</span>
             <span>No Account Required</span>
             <span>·</span>
