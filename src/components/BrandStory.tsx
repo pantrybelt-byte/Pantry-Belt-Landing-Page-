@@ -28,7 +28,7 @@ export default function BrandStory() {
   return (
     <section id="story" className="section-padding bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -139,7 +139,7 @@ export default function BrandStory() {
                   <span className="text-[10px] font-bold text-[#0071e3] uppercase tracking-widest">Community Focused</span>
                 </div>
               </div>
-              <h3 className="text-5xl md:text-6xl font-display font-semibold text-[#1d1d1f] leading-[1.1] tracking-tight">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-[#1d1d1f] leading-[1.15] tracking-tight">
                 Born from a need <br /> to bridge the gap.
               </h3>
             </div>

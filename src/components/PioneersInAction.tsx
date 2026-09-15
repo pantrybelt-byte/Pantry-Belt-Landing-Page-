@@ -72,11 +72,11 @@ export default function PioneersInAction() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="mb-4">Our Impact</h2>
-          <h3 className="text-4xl md:text-5xl font-display font-semibold text-[#1d1d1f] tracking-tight">
+          <h2 className="mb-3 md:mb-4">Our Impact</h2>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold text-[#1d1d1f] tracking-tight">
             Pioneers in Action
           </h3>
-          <p className="mt-6 text-xl text-[#86868b] font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 md:mt-6 text-lg md:text-xl text-[#555558] font-medium max-w-2xl mx-auto leading-relaxed">
             See our team working tirelessly to connect communities with the
             resources they deserve.
           </p>

@@ -29,14 +29,14 @@ export default function ValueProps() {
   return (
     <section id="how-it-works" className="section-padding bg-transparent">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="mb-4">How it works</h2>
-          <h3 className="text-4xl md:text-5xl font-display font-semibold text-[#1d1d1f] tracking-tight">
+        <div className="text-center mb-14 md:mb-20">
+          <h2 className="mb-3 md:mb-4">How it works</h2>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-semibold text-[#1d1d1f] tracking-tight">
             Designed for impact. <br className="md:hidden" /> Built for community.
           </h3>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-[1000px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 perspective-[1000px]">
           {props.map((prop, index) => (
             <motion.div
               key={prop.id}
@@ -51,7 +51,7 @@ export default function ValueProps() {
               }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
-              className="group p-10 rounded-[var(--radius-apple)] bg-[#f5f5f7] border border-transparent hover:bg-white shadow-3d hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] transition-all duration-500"
+              className="group p-7 sm:p-8 md:p-10 rounded-[var(--radius-apple)] bg-[#f5f5f7] border border-transparent hover:bg-white shadow-3d hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] transition-all duration-500"
             >
               <div className={`${prop.color} mb-8 transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100`}>
                 <prop.icon size={40} strokeWidth={1.5} />

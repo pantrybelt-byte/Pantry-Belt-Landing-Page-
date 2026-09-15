@@ -76,12 +76,12 @@ export default function WaitlistForm() {
     <>
       <section id="waitlist" className="section-padding bg-transparent relative overflow-hidden">
         <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="mb-4">Ready to pioneer?</h2>
-            <h3 className="text-5xl md:text-6xl font-display font-semibold text-[#1d1d1f] tracking-tight mb-6">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="mb-3 md:mb-4">Ready to pioneer?</h2>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-[#1d1d1f] tracking-tight mb-4 md:mb-6">
               Reserve Your Spot
             </h3>
-            <p className="text-[#86868b] text-xl font-medium max-w-2xl mx-auto">
+            <p className="text-[#555558] text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
               Be the first to know when we launch in your area. Connect with essential food resources through technology.
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function WaitlistForm() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-2xl mx-auto space-y-6 md:space-y-8 bg-white shadow-3d rounded-[var(--radius-apple)] border border-black/5 p-6 sm:p-8 md:p-16"
+            className="max-w-2xl mx-auto space-y-6 md:space-y-8 bg-white shadow-3d rounded-[var(--radius-apple)] border border-black/5 p-6 sm:p-10 md:p-14"
           >
             {error && (
               <motion.div 
