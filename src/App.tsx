@@ -17,20 +17,35 @@ export default function App() {
 
       {/* Navigation - Refined Apple-like Header */}
       <nav className="fixed top-0 w-full z-50 apple-blur border-b border-black/5">
-        <div className="max-w-7xl mx-auto px-6 h-20 grid grid-cols-3 items-center">
-          {/* Left spacer for perfect centering */}
-          <div className="flex justify-start"></div>
-
-          {/* Center - Standalone Logo */}
-          <Link to="/" className="flex justify-center group cursor-pointer">
-            <div className="w-14 h-14 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center transition-transform group-hover:scale-105 border border-black/5">
-              <img src="/logo.png" alt="Logo" className="w-full h-full object-cover scale-[1.08]" />
+        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+          {/* Left - Standalone Logo */}
+          <Link to="/" className="flex items-center group cursor-pointer" aria-label="Access Belt Home">
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center transition-transform group-hover:scale-105 border border-black/5">
+              <img src="/logo.png" alt="Access Belt Logo" className="w-full h-full object-cover scale-[1.08]" />
             </div>
+            <span className="ml-3 font-display font-semibold text-lg text-[#1d1d1f] hidden sm:inline-block tracking-tight">
+              Access Belt
+            </span>
           </Link>
 
+          {/* Center - Desktop Navigation Links */}
+          <div className="hidden md:flex items-center gap-8">
+            <a href="/#how-it-works" className="text-sm font-medium text-[#555558] hover:text-[#0071e3] transition-colors">
+              How It Works
+            </a>
+            <a href="/#story" className="text-sm font-medium text-[#555558] hover:text-[#0071e3] transition-colors">
+              Our Story
+            </a>
+            <a href="/#impact" className="text-sm font-medium text-[#555558] hover:text-[#0071e3] transition-colors">
+              Impact
+            </a>
+          </div>
+
           {/* Right - Call to Action */}
-          <div className="flex justify-end items-center">
-            <Link to="/#waitlist" className="btn-floating px-5 py-2 !rounded-full !text-sm !font-semibold">Join Now</Link>
+          <div className="flex items-center">
+            <a href="/#waitlist" className="btn-floating px-5 py-2 !rounded-full !text-sm !font-semibold">
+              Join Now
+            </a>
           </div>
         </div>
       </nav>

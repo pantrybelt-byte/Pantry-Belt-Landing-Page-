@@ -26,7 +26,7 @@ export default function BrandStory() {
   };
 
   return (
-    <section className="section-padding bg-transparent overflow-hidden">
+    <section id="story" className="section-padding bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div
@@ -78,13 +78,12 @@ export default function BrandStory() {
                   {/* Tap to play/pause */}
                   <button
                     onClick={togglePlay}
-                    className="absolute inset-0 z-10 w-full h-full cursor-pointer bg-transparent"
-                    style={{ outline: "none", border: "none" }}
+                    className="absolute inset-0 z-10 w-full h-full cursor-pointer bg-transparent focus-visible:ring-2 focus-visible:ring-[#0071e3] focus-visible:ring-inset rounded-[44px]"
                     aria-label={isPlaying ? "Pause video" : "Play video"}
                   >
                     {!isPlaying && (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
+                        <div className="w-14 h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center shadow-lg">
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                             <path d="M8 5v14l11-7z" />
                           </svg>
@@ -100,8 +99,7 @@ export default function BrandStory() {
                   >
                     <button
                       onClick={toggleMute}
-                      className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors"
-                      style={{ outline: "none", border: "none", cursor: "pointer" }}
+                      className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus-visible:ring-2 focus-visible:ring-white"
                       aria-label={isMuted ? "Unmute" : "Mute"}
                     >
                       {isMuted ? (

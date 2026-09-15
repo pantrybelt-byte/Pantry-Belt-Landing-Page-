@@ -62,7 +62,7 @@ export default function PioneersInAction() {
   };
 
   return (
-    <section className="section-padding bg-transparent overflow-hidden">
+    <section id="impact" className="section-padding bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div

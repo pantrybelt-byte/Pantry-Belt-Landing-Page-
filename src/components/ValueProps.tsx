@@ -27,7 +27,7 @@ const props = [
 
 export default function ValueProps() {
   return (
-    <section className="section-padding bg-transparent">
+    <section id="how-it-works" className="section-padding bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="mb-4">How it works</h2>

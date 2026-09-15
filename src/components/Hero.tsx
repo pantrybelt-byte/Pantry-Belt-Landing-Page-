@@ -44,11 +44,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="flex flex-col items-center justify-center"
+          className="flex flex-col items-center justify-center gap-4"
         >
           <a href="#waitlist" className="btn-floating px-10 py-5 !rounded-full text-lg !font-bold">
             Reserve My Spot
           </a>
+          <p className="text-xs md:text-sm font-semibold text-[#555558] flex items-center gap-2">
+            <span>✨ 100% Free</span>
+            <span>·</span>
+            <span>No Account Required</span>
+            <span>·</span>
+            <span>Alabama's Black Belt</span>
+          </p>
         </motion.div>
       </motion.div>
 
@@ -57,7 +64,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-        className="mt-20 w-full max-w-6xl px-6"
+        className="mt-16 w-full max-w-6xl px-6"
       >
         <div className="relative aspect-[21/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-white">
           <img
@@ -68,8 +75,8 @@ export default function Hero() {
             fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-8 left-8 text-white">
-            <p className="text-sm font-medium opacity-90">Supporting Rural Communities</p>
+          <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 text-white">
+            <p className="text-sm md:text-base font-medium opacity-90">Supporting Rural Communities</p>
             <p className="text-xs opacity-70">Est. 2026</p>
           </div>
         </div>
