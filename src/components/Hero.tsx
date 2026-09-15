@@ -66,19 +66,14 @@ export default function Hero() {
         transition={{ delay: 0.2, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         className="mt-16 w-full max-w-6xl px-6"
       >
-        <div className="relative aspect-[21/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-white">
+        <div className="relative aspect-[16/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-white">
           <img
-            src="/pioneer-1.jpg"
-            alt="Community Volunteers Stocking Pantry"
+            src="/pioneers-hero.png"
+            alt="The Pantry Pioneers - Founders Matthew Clarke and Thaddeus Sneed presenting Access Belt"
             className="w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 text-white">
-            <p className="text-sm md:text-base font-medium opacity-90">Supporting Rural Communities</p>
-            <p className="text-xs opacity-70">Est. 2026</p>
-          </div>
         </div>
       </motion.div>
     </section>
