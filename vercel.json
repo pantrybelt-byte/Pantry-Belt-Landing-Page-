@@ -50,7 +50,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets|logo.png|favicon.png|apple-touch-icon.png|bg-pattern.png|m-clarke.jpg|t-sneed.jpg|pioneer-1.jpg|pioneer-2.jpg|pioneer-3.jpg|pantrybelt-vid.mp4).*)",
+      "source": "/((?!api|assets|logo.png|favicon.png|apple-touch-icon.png|bg-pattern.png|m-clarke.jpg|t-sneed.jpg|pioneer-1.jpg|pioneer-2.jpg|pioneer-3.jpg|pantrybelt-vid.mp4).*)",
       "destination": "/index.html"
     }
   ]
