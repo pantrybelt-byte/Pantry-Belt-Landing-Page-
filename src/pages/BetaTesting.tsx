@@ -10,7 +10,8 @@ import { Link } from "react-router-dom";
 // ─────────────────────────────────────────────────────────
 
 const BETA_LINK_IOS = "#"; // ← Replace with your TestFlight invite link
-const BETA_LINK_ANDROID = "#"; // ← Replace with your Google Play / APK link
+const BETA_LINK_ANDROID_GROUP = "#"; // ← Replace with your Google Group join link
+                                     //   e.g. https://groups.google.com/g/accessbelt-android-testers
 
 const IOS_STEPS = [
   {
@@ -38,25 +39,31 @@ const IOS_STEPS = [
 const ANDROID_STEPS = [
   {
     num: "01",
-    title: "Open the Beta Link",
-    body: "Tap the Android beta link below on your Android phone. You'll be directed to the AccessBelt listing in the Google Play Store.",
+    title: "Have Your Gmail Ready",
+    body: "Android requires your Gmail address to grant tester access. Make sure you are signed in to your Google account on your Android phone before continuing.",
   },
   {
     num: "02",
-    title: "Join the Testing Programme",
-    body: 'Scroll down and tap "Join the beta". Once accepted (usually instant), tap "Update" or "Install" to get the beta build.',
+    title: "Join the AccessBelt Testers Group",
+    body: "Tap the \"Join Android Testers\" button below. Google will open a page asking you to sign in and join the AccessBelt Testers group — this is a free, private Google Group we use to manage access.",
   },
   {
     num: "03",
-    title: "Install & Launch",
-    body: "AccessBelt will install just like any regular app. Open it from your home screen or app drawer when installation is complete.",
+    title: "You're Added Automatically",
+    body: "Once you join the group, Google Play recognizes your Gmail as a trusted tester. No waiting, no manual approval — access is instant.",
   },
   {
     num: "04",
-    title: "Share Your Thoughts",
-    body: "Leave a rating or review directly on the Play Store beta listing, or email us at getaccessbelt@gmail.com with your experience.",
+    title: "Check Your Email for the Install Link",
+    body: "Within ~5 minutes you'll receive an email from Google Play with a direct link to install AccessBelt. Tap it, then tap \"Install\" on the Play Store page.",
+  },
+  {
+    num: "05",
+    title: "Share Your Feedback",
+    body: "Use the app and send your thoughts to getaccessbelt@gmail.com — screenshots, bugs, or anything that felt off. Every report directly improves the final release.",
   },
 ];
+
 
 interface Step { num: string; title: string; body: string; }
 interface PlatformCardProps { platform: "ios" | "android"; link: string; steps: Step[]; }
@@ -130,7 +137,7 @@ function PlatformCard({ platform, link, steps }: PlatformCardProps) {
           className={`w-full flex items-center justify-center gap-2 py-4 px-8 rounded-full text-white font-bold text-base transition-all duration-300 active:scale-95 hover:-translate-y-1 ${accentBg} ${accentHover} ${accentShadow}`}
           id={isIOS ? "beta-link-ios" : "beta-link-android"}
         >
-          {isIOS ? "Open iOS Beta Link →" : "Open Android Beta Link →"}
+          {isIOS ? "Open iOS Beta Link →" : "Join Android Testers (via Google) →"}
         </a>
         {link === "#" && (
           <p className="text-center text-xs text-[#86868b] mt-3 font-medium">
@@ -194,8 +201,8 @@ export default function BetaTesting() {
 
         {/* Platform cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <PlatformCard platform="ios"     link={BETA_LINK_IOS}     steps={IOS_STEPS}     />
-          <PlatformCard platform="android" link={BETA_LINK_ANDROID} steps={ANDROID_STEPS} />
+          <PlatformCard platform="ios"     link={BETA_LINK_IOS}           steps={IOS_STEPS}     />
+          <PlatformCard platform="android" link={BETA_LINK_ANDROID_GROUP} steps={ANDROID_STEPS} />
         </div>
 
         {/* Footer */}
