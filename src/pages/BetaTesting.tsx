@@ -88,7 +88,7 @@ const ANDROID_STEPS: Step[] = [
   {
     num: "04",
     title: "Send Feedback & Bug Reports",
-    body: "Test pantry locating, offline bookmarks, and directions. Send screenshots or notes to getaccessbelt@gmail.com or submit feedback directly through the Play Store listing.",
+    body: "Test map navigation, county filtering, Pete AI assistant, and phone dialer links. Send screenshots or notes to getaccessbelt@gmail.com or submit feedback directly through the Play Store listing.",
   },
 ];
 
@@ -111,7 +111,7 @@ const FAQ_ITEMS = [
   {
     question: "What should I test as a beta tester?",
     answer:
-      "We especially appreciate feedback on: 1) Searching for pantries in your county, 2) Calculating driving distances and directions, 3) Offline access when in low-cell rural areas, and 4) Accuracy of pantry hours and distribution schedules.",
+      "We especially appreciate feedback on: 1) Map navigation and GPS driving directions, 2) Searching and filtering pantries by county or city, 3) Chatting with Pete (our AI assistant) for food resources and guidance, and 4) One-tap calling to pantries and dialing 211 for emergency food help.",
   },
   {
     question: "How do I report bugs or suggest features?",
@@ -588,9 +588,9 @@ export default function BetaTesting() {
                 <div className="w-9 h-9 rounded-xl bg-[#0071e3]/10 text-[#0071e3] flex items-center justify-center mb-3">
                   📍
                 </div>
-                <h4 className="font-semibold text-sm text-[#1d1d1f] mb-1">GPS & Driving Distances</h4>
+                <h4 className="font-semibold text-sm text-[#1d1d1f] mb-1">Map & GPS Navigation</h4>
                 <p className="text-xs text-[#6e6e73] leading-relaxed">
-                  Verify accurate distance sorting and turn-by-turn routing to pantries in your county.
+                  Verify accurate GPS location, map pin loading, and opening driving directions in Apple Maps or Google Maps.
                 </p>
               </div>
             </div>
@@ -600,9 +600,9 @@ export default function BetaTesting() {
                 <div className="w-9 h-9 rounded-xl bg-[#0071e3]/10 text-[#0071e3] flex items-center justify-center mb-3">
                   🔍
                 </div>
-                <h4 className="font-semibold text-sm text-[#1d1d1f] mb-1">County & Town Search</h4>
+                <h4 className="font-semibold text-sm text-[#1d1d1f] mb-1">County Search & Filters</h4>
                 <p className="text-xs text-[#6e6e73] leading-relaxed">
-                  Test searching by county, city (Selma, Demopolis, Camden, etc.), or specific pantry names.
+                  Test searching by county or town (Selma, Demopolis, Camden, etc.) and check that listings filter quickly and accurately.
                 </p>
               </div>
             </div>
@@ -610,11 +610,11 @@ export default function BetaTesting() {
             <div className="p-4 rounded-2xl bg-[#f5f5f7] border border-black/5 flex flex-col justify-between">
               <div>
                 <div className="w-9 h-9 rounded-xl bg-[#0071e3]/10 text-[#0071e3] flex items-center justify-center mb-3">
-                  📶
+                  💬
                 </div>
-                <h4 className="font-semibold text-sm text-[#1d1d1f] mb-1">Offline Bookmarks</h4>
+                <h4 className="font-semibold text-sm text-[#1d1d1f] mb-1">Pete AI Assistant</h4>
                 <p className="text-xs text-[#6e6e73] leading-relaxed">
-                  Bookmark pantries and verify they open properly even without an active cellular connection.
+                  Ask Pete questions about local food pantries, SNAP/EBT guidance, or simple budget recipes using pantry staples.
                 </p>
               </div>
             </div>
@@ -622,11 +622,11 @@ export default function BetaTesting() {
             <div className="p-4 rounded-2xl bg-[#f5f5f7] border border-black/5 flex flex-col justify-between">
               <div>
                 <div className="w-9 h-9 rounded-xl bg-[#0071e3]/10 text-[#0071e3] flex items-center justify-center mb-3">
-                  ⏱️
+                  📞
                 </div>
-                <h4 className="font-semibold text-sm text-[#1d1d1f] mb-1">Distribution Schedules</h4>
+                <h4 className="font-semibold text-sm text-[#1d1d1f] mb-1">One-Tap Calling & 211</h4>
                 <p className="text-xs text-[#6e6e73] leading-relaxed">
-                  Confirm distribution times, dates, and requirements match local community reality.
+                  Confirm phone dialers open properly when calling pantries, and test the 24/7 Emergency Food (211) hotline link.
                 </p>
               </div>
             </div>
