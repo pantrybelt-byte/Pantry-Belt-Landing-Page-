@@ -1,6 +1,4 @@
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -47,13 +45,13 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="flex flex-col items-center justify-center gap-4"
         >
-          <Link to="/beta" className="btn-floating px-10 py-5 !rounded-full text-lg !font-bold" id="hero-become-tester">
-            Become a Tester
-          </Link>
+          <a href="#waitlist" className="btn-floating px-10 py-5 !rounded-full text-lg !font-bold" id="hero-reserve-spot">
+            Reserve Your Spot
+          </a>
           <p className="text-xs md:text-sm font-medium text-[#555558] flex items-center gap-2 tracking-wide">
             <span>100% Free</span>
             <span>·</span>
-            <span>iOS &amp; Android</span>
+            <span>No Account Required</span>
             <span>·</span>
             <span>Alabama's Black Belt</span>
           </p>
