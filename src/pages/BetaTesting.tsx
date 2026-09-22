@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 // ─────────────────────────────────────────────────────────
 
 const BETA_LINK_IOS = "#"; // ← Replace with your TestFlight invite link
-const BETA_LINK_ANDROID_GROUP = "#"; // ← Replace with your Google Group join link
-                                     //   e.g. https://groups.google.com/g/accessbelt-android-testers
+const BETA_LINK_ANDROID_GROUP = "https://groups.google.com/g/accessbelt-android-testers";
+const PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=com.accessbelt.app";
 
 const IOS_STEPS = [
   {
@@ -45,7 +45,7 @@ const ANDROID_STEPS = [
   {
     num: "02",
     title: "Join the AccessBelt Testers Group",
-    body: "Tap the \"Join Android Testers\" button below. Google will open a page asking you to sign in and join the AccessBelt Testers group — this is a free, private Google Group we use to manage access.",
+    body: "Tap the \"Join Android Testers\" button below. Google will open the AccessBelt Testers group — sign in with your Gmail and click \"Join group\". This instantly grants you tester access on the Play Store.",
   },
   {
     num: "03",
@@ -54,8 +54,8 @@ const ANDROID_STEPS = [
   },
   {
     num: "04",
-    title: "Check Your Email for the Install Link",
-    body: "Within ~5 minutes you'll receive an email from Google Play with a direct link to install AccessBelt. Tap it, then tap \"Install\" on the Play Store page.",
+    title: "Install from the Play Store",
+    body: "After joining the group, open the Play Store listing to install AccessBelt. You may also receive an email from Google with a direct install link.",
   },
   {
     num: "05",
@@ -66,9 +66,9 @@ const ANDROID_STEPS = [
 
 
 interface Step { num: string; title: string; body: string; }
-interface PlatformCardProps { platform: "ios" | "android"; link: string; steps: Step[]; }
+interface PlatformCardProps { platform: "ios" | "android"; link: string; secondaryLink?: string; steps: Step[]; }
 
-function PlatformCard({ platform, link, steps }: PlatformCardProps) {
+function PlatformCard({ platform, link, secondaryLink, steps }: PlatformCardProps) {
   const isIOS = platform === "ios";
   const accentColor = isIOS ? "#0071e3" : "#34a853";
   const accentBg   = isIOS ? "bg-[#0071e3]" : "bg-[#34a853]";
@@ -129,16 +129,27 @@ function PlatformCard({ platform, link, steps }: PlatformCardProps) {
       </div>
 
       {/* CTA */}
-      <div className="px-10 pb-10">
+      <div className="px-10 pb-10 space-y-3">
         <a
           href={link}
           target="_blank"
           rel="noopener noreferrer"
           className={`w-full flex items-center justify-center gap-2 py-4 px-8 rounded-full text-white font-bold text-base transition-all duration-300 active:scale-95 hover:-translate-y-1 ${accentBg} ${accentHover} ${accentShadow}`}
-          id={isIOS ? "beta-link-ios" : "beta-link-android"}
+          id={isIOS ? "beta-link-ios" : "beta-link-android-group"}
         >
           {isIOS ? "Open iOS Beta Link →" : "Join Android Testers (via Google) →"}
         </a>
+        {!isIOS && secondaryLink && (
+          <a
+            href={secondaryLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 py-3 px-8 rounded-full text-[#34a853] font-semibold text-sm border-2 border-[#34a853]/30 hover:border-[#34a853] hover:bg-[#34a853]/5 transition-all duration-300 active:scale-95"
+            id="beta-link-play-store"
+          >
+            Install on Google Play →
+          </a>
+        )}
         {link === "#" && (
           <p className="text-center text-xs text-[#86868b] mt-3 font-medium">
             Link coming soon — check back shortly.
@@ -202,7 +213,7 @@ export default function BetaTesting() {
         {/* Platform cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           <PlatformCard platform="ios"     link={BETA_LINK_IOS}           steps={IOS_STEPS}     />
-          <PlatformCard platform="android" link={BETA_LINK_ANDROID_GROUP} steps={ANDROID_STEPS} />
+          <PlatformCard platform="android" link={BETA_LINK_ANDROID_GROUP} secondaryLink={PLAY_STORE_LINK} steps={ANDROID_STEPS} />
         </div>
 
         {/* Footer */}
