@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 // distribution links when they are available.
 // ─────────────────────────────────────────────────────────
 
-const BETA_LINK_IOS = "#"; // ← Replace with your TestFlight invite link
+const BETA_LINK_IOS = "https://testflight.apple.com/join/Bx7DmRYc";
 const BETA_LINK_ANDROID_GROUP = "https://groups.google.com/g/accessbelt-android-testers";
 const PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=com.accessbelt.app";
 
