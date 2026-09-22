@@ -20,7 +20,7 @@ export default function App() {
 
       {/* Navigation - Refined Apple-like Header */}
       <nav className="fixed top-0 w-full z-50 apple-blur border-b border-black/5">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
           {/* Left - Standalone Logo */}
           <Link to="/" className="flex items-center group cursor-pointer" aria-label="AccessBelt Home">
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center transition-transform group-hover:scale-105 border border-black/5">
@@ -46,7 +46,7 @@ export default function App() {
 
           {/* Right - Call to Action */}
           <div className="flex items-center">
-            <Link to="/beta" className="btn-floating px-5 py-2 !rounded-full !text-sm !font-semibold" id="nav-become-tester">
+            <Link to="/beta" className="btn-floating px-3.5 sm:px-5 py-1.5 sm:py-2 !rounded-full !text-xs sm:!text-sm !font-semibold" id="nav-become-tester">
               Become a Tester
             </Link>
           </div>
