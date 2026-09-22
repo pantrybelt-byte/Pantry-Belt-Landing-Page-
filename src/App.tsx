@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -12,6 +12,11 @@ const BetaTesting = lazy(() => import("./pages/BetaTesting"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
+  const location = useLocation();
+  const isBetaPage =
+    location.pathname.startsWith("/beta") ||
+    location.pathname === "/become-tester";
+
   return (
     <main className="min-h-screen bg-[#f5f5f7] selection:bg-[#0071e3]/20 selection:text-[#0071e3] relative isolate overflow-hidden">
       <ScrollToTop />
@@ -46,9 +51,23 @@ export default function App() {
 
           {/* Right - Call to Action */}
           <div className="flex items-center">
-            <Link to="/beta" className="btn-floating px-3.5 sm:px-5 py-1.5 sm:py-2 !rounded-full !text-xs sm:!text-sm !font-semibold" id="nav-become-tester">
-              Become a Tester
-            </Link>
+            {isBetaPage ? (
+              <a
+                href="#builds"
+                className="btn-floating px-3.5 sm:px-5 py-1.5 sm:py-2 !rounded-full !text-xs sm:!text-sm !font-semibold"
+                id="nav-install-beta"
+              >
+                Install Beta
+              </a>
+            ) : (
+              <Link
+                to="/beta"
+                className="btn-floating px-3.5 sm:px-5 py-1.5 sm:py-2 !rounded-full !text-xs sm:!text-sm !font-semibold"
+                id="nav-become-tester"
+              >
+                Become a Tester
+              </Link>
+            )}
           </div>
         </div>
       </nav>
