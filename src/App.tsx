@@ -8,6 +8,7 @@ const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const DmcaPolicy = lazy(() => import("./pages/DmcaPolicy"));
 const UgcPolicy = lazy(() => import("./pages/UgcPolicy"));
 const Cookies = lazy(() => import("./pages/Cookies"));
+const BetaTesting = lazy(() => import("./pages/BetaTesting"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
@@ -45,9 +46,9 @@ export default function App() {
 
           {/* Right - Call to Action */}
           <div className="flex items-center">
-            <a href="/#waitlist" className="btn-floating px-5 py-2 !rounded-full !text-sm !font-semibold">
-              Join Now
-            </a>
+            <Link to="/beta" className="btn-floating px-5 py-2 !rounded-full !text-sm !font-semibold" id="nav-become-tester">
+              Become a Tester
+            </Link>
           </div>
         </div>
       </nav>
@@ -57,6 +58,11 @@ export default function App() {
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
+
+            {/* Beta Testing */}
+            <Route path="/beta" element={<BetaTesting />} />
+            <Route path="/beta-testing" element={<BetaTesting />} />
+            <Route path="/become-tester" element={<BetaTesting />} />
 
             {/* Terms of Service & Aliases */}
             <Route path="/terms" element={<TermsOfService />} />
