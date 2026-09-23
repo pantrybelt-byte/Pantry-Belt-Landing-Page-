@@ -16,7 +16,11 @@ import {
   ArrowUpRight,
   Mail,
   AlertCircle,
+  Loader2,
+  Clock,
 } from "lucide-react";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../lib/firebase";
 
 // ─────────────────────────────────────────────────────────
 // AccessBelt Beta Testing Portal
@@ -68,16 +72,14 @@ const IOS_STEPS: Step[] = [
 const ANDROID_STEPS: Step[] = [
   {
     num: "1",
-    title: "Join the Testers Group (Required First)",
-    body: "Google Play requires your account to be on our authorized roster before the app unlocks. Tap to join our Google Group with your phone’s primary Gmail.",
-    linkText: "Join Android Testers Group",
-    linkUrl: BETA_LINK_ANDROID_GROUP,
-    badge: "Step 1 of 2 · Instant access",
+    title: "Submit Your Google Play Gmail (Below)",
+    body: "Google Play requires your email on our authorized tester roster before the store unlocks. Enter your phone’s Gmail below. Roster authorization is processed in 1–2 hours.",
+    badge: "Step 1 of 2 · 1–2 hr clearance window",
   },
   {
     num: "2",
     title: "Open Closed Beta (Opt In & Install)",
-    body: "Open our closed testing link, tap the blue 'BECOME A TESTER' button, and then tap 'download it on Google Play' to install the preview build directly.",
+    body: "Once authorized, open our closed testing link, tap the blue 'BECOME A TESTER' button, and download the preview build directly from Google Play.",
     linkText: "Open Closed Beta Testing Link",
     linkUrl: PLAY_STORE_WEB_OPTIN,
     badge: "Step 2 of 2 · Google Play Verified",
@@ -124,7 +126,7 @@ const FAQ_ITEMS = [
   {
     question: "Why does Google Play show 'Item not found' or 'App unavailable'?",
     answer:
-      "This happens if you haven't completed both preliminary steps: (1) Join the AccessBelt Testers Google Group with your phone's primary Gmail, and (2) Open the Web Opt-In page and tap 'BECOME A TESTER'. Once you tap 'BECOME A TESTER', Google instantly unlocks the download on your Google Play Store app. Also confirm your Play Store app is active under the same Gmail.",
+      "Google Play closed testing requires your Google account to be authorized on our developer roster. If you just submitted your email or joined the group, Google Play typically takes 1–2 hours to clear your account. Once cleared, opening the Closed Beta link and tapping 'BECOME A TESTER' will immediately unlock the download on your device.",
   },
   {
     question: "Do I need an invitation code for Apple TestFlight?",
@@ -148,6 +150,34 @@ export default function BetaTesting() {
   const [detectedPlatform, setDetectedPlatform] = useState<"ios" | "android" | null>(null);
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // Android Tester Clearance Email Submission
+  const [androidEmail, setAndroidEmail] = useState("");
+  const [androidStatus, setAndroidStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [androidError, setAndroidError] = useState<string | null>(null);
+
+  const handleAndroidSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAndroidError(null);
+    const trimmed = androidEmail.trim().toLowerCase();
+    if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setAndroidError("Please enter a valid Google Play email (Gmail).");
+      return;
+    }
+    try {
+      setAndroidStatus("submitting");
+      await addDoc(collection(db, "android_testers"), {
+        email: trimmed,
+        created_at: serverTimestamp(),
+        source: "beta_testing_page",
+      });
+      setAndroidStatus("success");
+    } catch (err: any) {
+      console.error("Error submitting android tester email:", err);
+      setAndroidError("Unable to submit right now. Please try again or join via the Google Group below.");
+      setAndroidStatus("idle");
+    }
+  };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -461,19 +491,86 @@ export default function BetaTesting() {
                 ))}
               </div>
 
-              {/* Action Area (Clean 2-Step Flow) */}
-              <div className="p-6 sm:p-8 pt-0 space-y-2.5">
-                <a
-                  href={BETA_LINK_ANDROID_GROUP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full min-h-[48px] flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-white font-semibold text-sm sm:text-base bg-[#34a853] hover:bg-[#2d9148] active:scale-[0.98] transition-all shadow-[0_4px_16px_rgba(52,168,83,0.25)]"
-                  id="beta-link-android-group"
-                >
-                  <span>1. Join Testers Group (Required)</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
+              {/* Action Area (Inline Clearance Form + Closed Beta Opt-In) */}
+              <div className="p-6 sm:p-8 pt-0 space-y-3.5">
+                {/* 1. Request Clearance Form */}
+                <div className="rounded-2xl border border-black/[0.08] bg-black/[0.02] p-4">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-xs font-semibold text-[#1d1d1f] flex items-center gap-1.5">
+                      <Mail className="w-3.5 h-3.5 text-[#34a853]" />
+                      1. Request Google Play Clearance
+                    </span>
+                    <span className="text-[11px] text-[#86868b] flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      1–2 hr window
+                    </span>
+                  </div>
 
+                  {androidStatus === "success" ? (
+                    <div className="bg-emerald-50 border border-emerald-200/80 rounded-xl p-3 text-left">
+                      <div className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+                        <div className="text-xs text-emerald-900 space-y-1">
+                          <p className="font-semibold">
+                            Email submitted ({androidEmail})
+                          </p>
+                          <p className="text-emerald-700 leading-relaxed text-[11px]">
+                            Your account is being added to our Google Play Console roster. Authorization takes approximately 1–2 hours. Once cleared, tap Step 2 below to install!
+                          </p>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setAndroidStatus("idle");
+                              setAndroidEmail("");
+                            }}
+                            className="text-[11px] font-medium text-emerald-800 underline hover:text-emerald-900 pt-0.5"
+                          >
+                            Submit another email
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleAndroidSubmit} className="space-y-2">
+                      <div className="flex flex-col sm:flex-row gap-2">
+                        <input
+                          type="email"
+                          required
+                          value={androidEmail}
+                          onChange={(e) => setAndroidEmail(e.target.value)}
+                          placeholder="Your phone's Google Play Gmail"
+                          disabled={androidStatus === "submitting"}
+                          className="flex-1 text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-black/[0.1] bg-white text-[#1d1d1f] placeholder:text-[#86868b] focus:outline-none focus:ring-2 focus:ring-[#34a853]/40 focus:border-[#34a853] transition-all disabled:opacity-50"
+                        />
+                        <button
+                          type="submit"
+                          disabled={androidStatus === "submitting"}
+                          className="min-h-[40px] px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#34a853] hover:bg-[#2d9148] active:scale-[0.98] transition-all flex items-center justify-center gap-1.5 shadow-[0_2px_8px_rgba(52,168,83,0.25)] shrink-0 disabled:opacity-50"
+                        >
+                          {androidStatus === "submitting" ? (
+                            <>
+                              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                              <span>Submitting...</span>
+                            </>
+                          ) : (
+                            <span>Request Clearance</span>
+                          )}
+                        </button>
+                      </div>
+                      {androidError && (
+                        <p className="text-[11px] text-red-600 flex items-center gap-1 pl-1">
+                          <AlertCircle className="w-3 h-3 shrink-0" />
+                          <span>{androidError}</span>
+                        </p>
+                      )}
+                      <p className="text-[11px] text-[#86868b] leading-relaxed pl-0.5">
+                        Direct roster entry bypasses group sync delays. Batch authorized every 1–2 hours.
+                      </p>
+                    </form>
+                  )}
+                </div>
+
+                {/* 2. Closed Beta Link */}
                 <a
                   href={PLAY_STORE_WEB_OPTIN}
                   target="_blank"
@@ -488,6 +585,7 @@ export default function BetaTesting() {
                   <ExternalLink className="w-3.5 h-3.5 text-[#34a853]" />
                 </a>
 
+                {/* Secondary helpers: Group link + Copy link */}
                 <div className="flex items-center justify-between gap-3 pt-1">
                   <button
                     onClick={() => handleCopy(PLAY_STORE_WEB_OPTIN, "optin")}
@@ -506,22 +604,15 @@ export default function BetaTesting() {
                     )}
                   </button>
 
-                  <button
-                    onClick={() => handleCopy(BETA_LINK_ANDROID_GROUP, "android")}
+                  <a
+                    href={BETA_LINK_ANDROID_GROUP}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="py-2 px-3 rounded-lg border border-black/[0.08] hover:bg-black/[0.03] text-xs font-medium text-[#6e6e73] hover:text-[#1d1d1f] transition-colors flex items-center justify-center gap-1.5"
                   >
-                    {copiedLink === "android" ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
-                        <span className="text-emerald-700">Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" />
-                        <span>Copy Group Link</span>
-                      </>
-                    )}
-                  </button>
+                    <span>Or Join Google Group</span>
+                    <ArrowUpRight className="w-3 h-3 text-[#86868b]" />
+                  </a>
                 </div>
               </div>
             </motion.div>
