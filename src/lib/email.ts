@@ -60,7 +60,11 @@ export async function sendBetaClearanceEmail(recipientEmail: string): Promise<vo
     TEMPLATE_ID,
     {
       to_email: recipientEmail,
+      email: recipientEmail,
+      user_email: recipientEmail,
+      recipient_email: recipientEmail,
       to_name: recipientEmail.split("@")[0],
+      name: recipientEmail.split("@")[0],
       subject: "AccessBelt Android Beta — Testing Link & Next Steps",
       message: htmlMessage,
     },
@@ -119,7 +123,11 @@ export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: str
     TEMPLATE_ID,
     {
       to_email: recipientEmail,
+      email: recipientEmail,
+      user_email: recipientEmail,
+      recipient_email: recipientEmail,
       to_name: name,
+      name: name,
       subject: "Welcome to the AccessBelt Waitlist!",
       message: htmlMessage,
     },
