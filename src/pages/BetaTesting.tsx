@@ -512,10 +512,10 @@ export default function BetaTesting() {
                         <Check className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
                         <div className="text-xs text-emerald-900 space-y-1">
                           <p className="font-semibold">
-                            Email submitted ({androidEmail})
+                            Clearance Requested ({androidEmail})
                           </p>
                           <p className="text-emerald-700 leading-relaxed text-[11px]">
-                            Your account is being added to our Google Play Console roster. Authorization takes approximately 1–2 hours. Once cleared, tap Step 2 below to install!
+                            We've sent a confirmation email to <strong>{androidEmail}</strong> with your testing link and next steps. Your account is being added to our Google Play Console roster (1–2 hour authorization window). Once cleared, tap Step 2 below or open the email on your phone to install!
                           </p>
                           <button
                             type="button"

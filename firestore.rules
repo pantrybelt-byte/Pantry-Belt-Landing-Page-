@@ -12,6 +12,14 @@ service cloud.firestore {
       allow update, delete:   if false;
     }
 
+    // ── Android Testers ────────────────────────────────────────────────────────
+    // Beta portal only. Public create with email validation; no reads or mutations.
+    match /android_testers/{docId} {
+      allow read:             if false;
+      allow create:           if isValidAndroidTesterEntry();
+      allow update, delete:   if false;
+    }
+
     // ── Pantries ───────────────────────────────────────────────────────────────
     // Read-only for any authenticated session (including Firebase Anonymous Auth).
     // Requiring auth prevents unauthenticated REST scraping of the entire
@@ -76,6 +84,16 @@ service cloud.firestore {
           && d.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
           && d.phone_sms is string
           && d.phone_sms.matches('^\\+1[0-9]{10}$')
+          && d.created_at is timestamp;
+    }
+
+    function isValidAndroidTesterEntry() {
+      let d = request.resource.data;
+      return d.keys().hasAll(['email', 'created_at', 'source'])
+          && d.keys().hasOnly(['email', 'created_at', 'source'])
+          && d.email is string
+          && d.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+          && d.source is string
           && d.created_at is timestamp;
     }
   }
