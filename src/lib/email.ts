@@ -55,7 +55,8 @@ export async function sendBetaClearanceEmail(recipientEmail: string): Promise<vo
     </div>
   `;
 
-  await emailjs.send(
+  // 1. Dispatch instructions to the Android tester
+  const testerPromise = emailjs.send(
     SERVICE_ID,
     TEMPLATE_ID,
     {
@@ -65,16 +66,60 @@ export async function sendBetaClearanceEmail(recipientEmail: string): Promise<vo
       recipient_email: recipientEmail,
       to_name: recipientEmail.split("@")[0],
       name: recipientEmail.split("@")[0],
-      bcc: "getaccessbelt@gmail.com",
       subject: "AccessBelt Android Beta — Testing Link & Next Steps",
       message: htmlMessage,
     },
     PUBLIC_KEY
   );
+
+  // 2. Dispatch dedicated Admin Alert directly to getaccessbelt@gmail.com Inbox
+  const adminHtml = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #1d1d1f; line-height: 1.6;">
+      <h2 style="color: #1d1d1f; font-size: 20px; font-weight: 600; margin-top: 0;">🚨 New Android Beta Clearance Request</h2>
+      <p style="font-size: 15px; color: #333336;">
+        A new tester just submitted their Google Play account on the AccessBelt Beta page:
+      </p>
+      <div style="background-color: #f5f5f7; border-left: 4px solid #34a853; border-radius: 4px; padding: 14px 18px; margin: 18px 0;">
+        <p style="margin: 0; font-size: 16px; font-weight: 700; color: #1d1d1f;">
+          ${recipientEmail}
+        </p>
+      </div>
+      <p style="font-size: 14px; color: #555558;">
+        <strong>Action Required:</strong> Add this Gmail address to your Google Play Console Closed Testing Email List so their authorization clears.
+      </p>
+      <div style="margin: 24px 0;">
+        <a href="https://play.google.com/console" style="background-color: #0071e3; color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 600; padding: 12px 20px; border-radius: 6px; display: inline-block;">
+          Open Google Play Console →
+        </a>
+      </div>
+      <hr style="border: none; border-top: 1px solid #e5e5ea; margin: 24px 0;" />
+      <p style="font-size: 12px; color: #86868b; margin: 0;">AccessBelt Admin Automated Notification</p>
+    </div>
+  `;
+
+  const adminPromise = emailjs.send(
+    SERVICE_ID,
+    TEMPLATE_ID,
+    {
+      to_email: "getaccessbelt@gmail.com",
+      email: "getaccessbelt@gmail.com",
+      to_name: "AccessBelt Admin",
+      name: "AccessBelt Admin",
+      subject: `🚨 New Android Beta Clearance: ${recipientEmail}`,
+      message: adminHtml,
+    },
+    PUBLIC_KEY
+  );
+
+  const results = await Promise.allSettled([testerPromise, adminPromise]);
+  const rejected = results.filter((r) => r.status === "rejected");
+  if (rejected.length === results.length) {
+    throw (rejected[0] as PromiseRejectedResult).reason;
+  }
 }
 
 /**
- * Sends welcome confirmation email to new waitlist signups.
+ * Sends welcome confirmation email to new waitlist signups and notifies admin.
  */
 export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: string): Promise<void> {
   const htmlMessage = `
@@ -119,7 +164,8 @@ export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: str
     </div>
   `;
 
-  await emailjs.send(
+  // 1. Dispatch confirmation to subscriber
+  const userPromise = emailjs.send(
     SERVICE_ID,
     TEMPLATE_ID,
     {
@@ -129,10 +175,47 @@ export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: str
       recipient_email: recipientEmail,
       to_name: name,
       name: name,
-      bcc: "getaccessbelt@gmail.com",
       subject: "Welcome to the AccessBelt Waitlist!",
       message: htmlMessage,
     },
     PUBLIC_KEY
   );
+
+  // 2. Dispatch dedicated Admin Alert directly to getaccessbelt@gmail.com Inbox
+  const adminHtml = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #1d1d1f; line-height: 1.6;">
+      <h2 style="color: #1d1d1f; font-size: 20px; font-weight: 600; margin-top: 0;">🎉 New AccessBelt Waitlist Signup</h2>
+      <p style="font-size: 15px; color: #333336;">
+        A new user joined the AccessBelt waitlist:
+      </p>
+      <div style="background-color: #f5f5f7; border-left: 4px solid #0071e3; border-radius: 4px; padding: 14px 18px; margin: 18px 0;">
+        <p style="margin: 0; font-size: 15px; color: #1d1d1f;">
+          <strong>Name:</strong> ${name || "Not provided"}<br/>
+          <strong>Email:</strong> ${recipientEmail}
+        </p>
+      </div>
+      <hr style="border: none; border-top: 1px solid #e5e5ea; margin: 24px 0;" />
+      <p style="font-size: 12px; color: #86868b; margin: 0;">AccessBelt Admin Automated Notification</p>
+    </div>
+  `;
+
+  const adminPromise = emailjs.send(
+    SERVICE_ID,
+    TEMPLATE_ID,
+    {
+      to_email: "getaccessbelt@gmail.com",
+      email: "getaccessbelt@gmail.com",
+      to_name: "AccessBelt Admin",
+      name: "AccessBelt Admin",
+      subject: `🎉 New Waitlist Signup: ${name ? `${name} (${recipientEmail})` : recipientEmail}`,
+      message: adminHtml,
+    },
+    PUBLIC_KEY
+  );
+
+  const results = await Promise.allSettled([userPromise, adminPromise]);
+  const rejected = results.filter((r) => r.status === "rejected");
+  if (rejected.length === results.length) {
+    throw (rejected[0] as PromiseRejectedResult).reason;
+  }
 }
