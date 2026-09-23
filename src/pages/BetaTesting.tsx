@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import { sendBetaClearanceEmail } from "../lib/email";
 
 // ─────────────────────────────────────────────────────────
 // AccessBelt Beta Testing Portal
@@ -181,6 +182,14 @@ export default function BetaTesting() {
       });
 
       await Promise.race([writePromise, timeoutPromise]);
+
+      // Dispatch automated clearance email with testing instructions
+      try {
+        await sendBetaClearanceEmail(trimmed);
+      } catch (emailErr) {
+        console.warn("EmailJS clearance email dispatch failed (non-blocking):", emailErr);
+      }
+
       setAndroidStatus("success");
     } catch (err: any) {
       console.error("Error submitting android tester email:", err);

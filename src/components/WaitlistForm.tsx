@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Send, CheckCircle2, AlertCircle, Loader2, ArrowLeft } from "lucide-react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import { sendWaitlistWelcomeEmail } from "../lib/email";
 
 export default function WaitlistForm() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -19,14 +20,14 @@ export default function WaitlistForm() {
     e.preventDefault();
     setError(null);
 
-    // Front-end Validation Logic
+    // Validation
     if (!name.trim()) {
-      setError("Please enter your name.");
+      setError("Please enter your full name.");
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email.trim())) {
       setError("Please enter a valid email address.");
       return;
     }
@@ -52,6 +53,13 @@ export default function WaitlistForm() {
         phone_sms: e164Phone,
         created_at: serverTimestamp()
       });
+
+      // Send automated welcome email via EmailJS
+      try {
+        await sendWaitlistWelcomeEmail(name.trim(), email.trim());
+      } catch (emailErr) {
+        console.warn("EmailJS waitlist email dispatch failed (non-blocking):", emailErr);
+      }
 
       setStatus('success');
       setShowModal(true);
