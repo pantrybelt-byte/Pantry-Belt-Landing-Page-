@@ -84,10 +84,10 @@ const ANDROID_STEPS: Step[] = [
   },
   {
     num: "3",
-    title: "Install via Google Play Store",
-    body: "With clearance active, open the Google Play Store link and tap Install. The listing appears just like a standard app download.",
-    linkText: "Open Google Play Listing",
-    linkUrl: PLAY_STORE_LINK,
+    title: "Download Closed Testing Build",
+    body: "On the closed beta testing page, tap 'download it on Google Play' to install the active closed testing build.",
+    linkText: "Open Closed Testing Link",
+    linkUrl: PLAY_STORE_WEB_OPTIN,
     badge: "Step 3 of 3 · Google Play Verified",
   },
   {
@@ -495,7 +495,7 @@ export default function BetaTesting() {
                 </a>
 
                 <a
-                  href={PLAY_STORE_LINK}
+                  href={PLAY_STORE_WEB_OPTIN}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full min-h-[46px] flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl text-[#1d1d1f] font-semibold text-sm border border-black/[0.12] hover:border-[#34a853] hover:bg-[#34a853]/5 active:scale-[0.98] transition-all"
@@ -504,20 +504,27 @@ export default function BetaTesting() {
                   <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current text-[#34a853]">
                     <path d="M3.609 1.814L13.792 12 3.61 22.186c-.347-.31-.56-.757-.56-1.258V3.072c0-.501.213-.948.56-1.258zm11.306 11.31l2.427 2.428-11.758 6.784 9.331-9.212zm0-2.248L5.584 1.666l11.758 6.784-2.427 2.426zm1.59 1.59l3.327 1.919c.749.432.749 1.139 0 1.571l-3.327 1.919-2.122-2.122 2.122-2.122z" />
                   </svg>
-                  <span>3. Install on Google Play Store</span>
+                  <span>3. Download Closed Testing Build</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
 
                 <div className="flex items-center justify-between gap-3 pt-1">
-                  <a
-                    href={PLAY_STORE_WEB_OPTIN}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-2 px-2.5 rounded-lg border border-black/[0.08] hover:bg-black/[0.03] text-xs font-medium text-[#6e6e73] hover:text-[#1d1d1f] text-center transition-colors flex items-center justify-center gap-1"
+                  <button
+                    onClick={() => handleCopy(PLAY_STORE_WEB_OPTIN, "optin")}
+                    className="flex-1 py-2 px-2.5 rounded-lg border border-black/[0.08] hover:bg-black/[0.03] text-xs font-medium text-[#6e6e73] hover:text-[#1d1d1f] text-center transition-colors flex items-center justify-center gap-1.5"
                   >
-                    <span>Direct Web Testing URL</span>
-                    <ArrowUpRight className="w-3 h-3" />
-                  </a>
+                    {copiedLink === "optin" ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        <span className="text-emerald-700">Copied Testing Link</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copy Testing Link</span>
+                      </>
+                    )}
+                  </button>
 
                   <button
                     onClick={() => handleCopy(BETA_LINK_ANDROID_GROUP, "android")}
