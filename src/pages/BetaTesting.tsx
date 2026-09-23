@@ -166,15 +166,29 @@ export default function BetaTesting() {
     }
     try {
       setAndroidStatus("submitting");
-      await addDoc(collection(db, "android_testers"), {
+
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(
+          () => reject(new Error("Request timed out. Please try again or join our Google Group below.")),
+          8000
+        )
+      );
+
+      const writePromise = addDoc(collection(db, "android_testers"), {
         email: trimmed,
         created_at: serverTimestamp(),
         source: "beta_testing_page",
       });
+
+      await Promise.race([writePromise, timeoutPromise]);
       setAndroidStatus("success");
     } catch (err: any) {
       console.error("Error submitting android tester email:", err);
-      setAndroidError("Unable to submit right now. Please try again or join via the Google Group below.");
+      const msg =
+        err?.code === "permission-denied"
+          ? "Roster submission is pending database permissions. Please join via our Google Group below for immediate clearance."
+          : (err?.message || "Unable to submit right now. Please try again or join via the Google Group below.");
+      setAndroidError(msg);
       setAndroidStatus("idle");
     }
   };
