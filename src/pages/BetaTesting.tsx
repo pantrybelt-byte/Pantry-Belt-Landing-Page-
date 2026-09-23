@@ -72,26 +72,18 @@ const ANDROID_STEPS: Step[] = [
     body: "Google Play requires your account to be on our authorized roster before the app unlocks. Tap to join our Google Group with your phone’s primary Gmail.",
     linkText: "Join Android Testers Group",
     linkUrl: BETA_LINK_ANDROID_GROUP,
-    badge: "Step 1 of 3 · Instant access",
+    badge: "Step 1 of 2 · Instant access",
   },
   {
     num: "2",
-    title: "Accept Invite & Opt In (Web)",
-    body: "Open Google Play's testing opt-in page and tap the blue 'BECOME A TESTER' button. This officially grants your account download clearance.",
-    linkText: "Open Web Opt-In Page",
+    title: "Open Closed Beta (Opt In & Install)",
+    body: "Open our closed testing link, tap the blue 'BECOME A TESTER' button, and then tap 'download it on Google Play' to install the preview build directly.",
+    linkText: "Open Closed Beta Testing Link",
     linkUrl: PLAY_STORE_WEB_OPTIN,
-    badge: "Step 2 of 3 · Unlocks Play Store",
+    badge: "Step 2 of 2 · Google Play Verified",
   },
   {
     num: "3",
-    title: "Download Closed Testing Build",
-    body: "On the closed beta testing page, tap 'download it on Google Play' to install the active closed testing build.",
-    linkText: "Open Closed Testing Link",
-    linkUrl: PLAY_STORE_WEB_OPTIN,
-    badge: "Step 3 of 3 · Google Play Verified",
-  },
-  {
-    num: "4",
     title: "Explore Core Features & Share Feedback",
     body: "Search local counties, view pantry pins on the live map, chat with Pete (AI), and test phone dialer connections. Send thoughts to getaccessbelt@gmail.com.",
   },
@@ -469,7 +461,7 @@ export default function BetaTesting() {
                 ))}
               </div>
 
-              {/* Action Area (Sequential 1-2-3 Flow) */}
+              {/* Action Area (Clean 2-Step Flow) */}
               <div className="p-6 sm:p-8 pt-0 space-y-2.5">
                 <a
                   href={BETA_LINK_ANDROID_GROUP}
@@ -486,26 +478,14 @@ export default function BetaTesting() {
                   href={PLAY_STORE_WEB_OPTIN}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full min-h-[46px] flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl text-[#1d1d1f] font-semibold text-sm border border-emerald-600/30 bg-emerald-500/[0.06] hover:bg-emerald-500/[0.12] active:scale-[0.98] transition-all"
-                  id="beta-link-android-optin"
-                >
-                  <ShieldCheck className="w-4 h-4 text-[#34a853]" />
-                  <span>2. Accept Invite & Opt In (Web)</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#34a853]" />
-                </a>
-
-                <a
-                  href={PLAY_STORE_WEB_OPTIN}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full min-h-[46px] flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl text-[#1d1d1f] font-semibold text-sm border border-black/[0.12] hover:border-[#34a853] hover:bg-[#34a853]/5 active:scale-[0.98] transition-all"
+                  className="w-full min-h-[48px] flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-[#1d1d1f] font-semibold text-sm sm:text-base border border-emerald-600/30 bg-emerald-500/[0.08] hover:bg-emerald-500/[0.14] active:scale-[0.98] transition-all"
                   id="beta-link-play-store"
                 >
                   <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current text-[#34a853]">
                     <path d="M3.609 1.814L13.792 12 3.61 22.186c-.347-.31-.56-.757-.56-1.258V3.072c0-.501.213-.948.56-1.258zm11.306 11.31l2.427 2.428-11.758 6.784 9.331-9.212zm0-2.248L5.584 1.666l11.758 6.784-2.427 2.426zm1.59 1.59l3.327 1.919c.749.432.749 1.139 0 1.571l-3.327 1.919-2.122-2.122 2.122-2.122z" />
                   </svg>
-                  <span>3. Download Closed Testing Build</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>2. Open Closed Beta (Opt In & Install)</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#34a853]" />
                 </a>
 
                 <div className="flex items-center justify-between gap-3 pt-1">
