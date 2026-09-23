@@ -69,28 +69,31 @@ const ANDROID_STEPS: Step[] = [
   {
     num: "1",
     title: "Join the Testers Group (Required First)",
-    body: "Google Play requires your account to be on our authorized tester roster before the store page unlocks. Join our Google Group with your phone’s primary Gmail.",
+    body: "Google Play requires your account to be on our authorized roster before the app unlocks. Tap to join our Google Group with your phone’s primary Gmail.",
     linkText: "Join Android Testers Group",
     linkUrl: BETA_LINK_ANDROID_GROUP,
-    badge: "Step 1 of 2 · Instant access",
+    badge: "Step 1 of 3 · Instant access",
   },
   {
     num: "2",
-    title: "Install via Google Play Store",
-    body: "With tester clearance active, open the Google Play Store link and tap Install. The listing appears just like a standard app download.",
-    linkText: "Open Google Play Listing",
-    linkUrl: PLAY_STORE_LINK,
-    badge: "Step 2 of 2 · Google Play Verified",
+    title: "Accept Invite & Opt In (Web)",
+    body: "Open Google Play's testing opt-in page and tap the blue 'BECOME A TESTER' button. This officially grants your account download clearance.",
+    linkText: "Open Web Opt-In Page",
+    linkUrl: PLAY_STORE_WEB_OPTIN,
+    badge: "Step 2 of 3 · Unlocks Play Store",
   },
   {
     num: "3",
-    title: "Explore Core Features",
-    body: "Search local counties, view pantry pins on the live map, chat with Pete (AI), and test phone dialer connections.",
+    title: "Install via Google Play Store",
+    body: "With clearance active, open the Google Play Store link and tap Install. The listing appears just like a standard app download.",
+    linkText: "Open Google Play Listing",
+    linkUrl: PLAY_STORE_LINK,
+    badge: "Step 3 of 3 · Google Play Verified",
   },
   {
     num: "4",
-    title: "Submit Notes & Reports",
-    body: "Email bug captures, phone models, and thoughts to getaccessbelt@gmail.com or leave private feedback in the Play Store listing.",
+    title: "Explore Core Features & Share Feedback",
+    body: "Search local counties, view pantry pins on the live map, chat with Pete (AI), and test phone dialer connections. Send thoughts to getaccessbelt@gmail.com.",
   },
 ];
 
@@ -129,7 +132,7 @@ const FAQ_ITEMS = [
   {
     question: "Why does Google Play show 'Item not found' or 'App unavailable'?",
     answer:
-      "This happens when you haven't joined the Google Group first, or when your Play Store app is switched to a different Google account. Join the AccessBelt Testers Group with your phone's Gmail account, give Google 60 seconds to sync permissions, and refresh the store listing.",
+      "This happens if you haven't completed both preliminary steps: (1) Join the AccessBelt Testers Google Group with your phone's primary Gmail, and (2) Open the Web Opt-In page and tap 'BECOME A TESTER'. Once you tap 'BECOME A TESTER', Google instantly unlocks the download on your Google Play Store app. Also confirm your Play Store app is active under the same Gmail.",
   },
   {
     question: "Do I need an invitation code for Apple TestFlight?",
@@ -466,7 +469,7 @@ export default function BetaTesting() {
                 ))}
               </div>
 
-              {/* Action Area (Direct Sequential Flow) */}
+              {/* Action Area (Sequential 1-2-3 Flow) */}
               <div className="p-6 sm:p-8 pt-0 space-y-2.5">
                 <a
                   href={BETA_LINK_ANDROID_GROUP}
@@ -480,6 +483,18 @@ export default function BetaTesting() {
                 </a>
 
                 <a
+                  href={PLAY_STORE_WEB_OPTIN}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-h-[46px] flex items-center justify-center gap-2 py-2.5 px-5 rounded-xl text-[#1d1d1f] font-semibold text-sm border border-emerald-600/30 bg-emerald-500/[0.06] hover:bg-emerald-500/[0.12] active:scale-[0.98] transition-all"
+                  id="beta-link-android-optin"
+                >
+                  <ShieldCheck className="w-4 h-4 text-[#34a853]" />
+                  <span>2. Accept Invite & Opt In (Web)</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#34a853]" />
+                </a>
+
+                <a
                   href={PLAY_STORE_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -489,7 +504,7 @@ export default function BetaTesting() {
                   <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current text-[#34a853]">
                     <path d="M3.609 1.814L13.792 12 3.61 22.186c-.347-.31-.56-.757-.56-1.258V3.072c0-.501.213-.948.56-1.258zm11.306 11.31l2.427 2.428-11.758 6.784 9.331-9.212zm0-2.248L5.584 1.666l11.758 6.784-2.427 2.426zm1.59 1.59l3.327 1.919c.749.432.749 1.139 0 1.571l-3.327 1.919-2.122-2.122 2.122-2.122z" />
                   </svg>
-                  <span>2. Install on Google Play Store</span>
+                  <span>3. Install on Google Play Store</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
 
@@ -500,7 +515,7 @@ export default function BetaTesting() {
                     rel="noopener noreferrer"
                     className="flex-1 py-2 px-2.5 rounded-lg border border-black/[0.08] hover:bg-black/[0.03] text-xs font-medium text-[#6e6e73] hover:text-[#1d1d1f] text-center transition-colors flex items-center justify-center gap-1"
                   >
-                    <span>Web Testing Opt-In</span>
+                    <span>Direct Web Testing URL</span>
                     <ArrowUpRight className="w-3 h-3" />
                   </a>
 
