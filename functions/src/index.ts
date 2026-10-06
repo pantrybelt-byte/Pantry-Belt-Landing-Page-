@@ -17,6 +17,7 @@ export const onWaitlistSignup = onDocumentCreated("waitlist/{docId}", async (eve
       // Write to the 'mail' collection to trigger the extension
       await admin.firestore().collection("mail").add({
         to: data.email,
+        bcc: "getaccessbelt@gmail.com",
         message: {
           subject: "Welcome to the AccessBelt Waitlist!",
           html: `
