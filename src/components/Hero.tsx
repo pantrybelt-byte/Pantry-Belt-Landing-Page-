@@ -58,21 +58,24 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Hero Image / Abstract Element */}
+      {/* Hero Video / Promo */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         className="mt-16 w-full max-w-6xl px-6"
       >
-        <div className="relative aspect-[16/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-white">
-          <img
-            src="/pioneers-hero.png"
-            alt="The Pantry Pioneers - Founders Matthew Clarke and Thaddaus Sneed presenting AccessBelt"
+        <div className="relative aspect-[16/9] rounded-[32px] overflow-hidden shadow-3d border border-black/5 bg-black">
+          <video
+            src="/AccessBelt Promo.mp4"
+            controls
+            playsInline
+            preload="metadata"
+            poster="/promo-poster.jpg"
             className="w-full h-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-          />
+          >
+            Your browser does not support the video tag.
+          </video>
         </div>
       </motion.div>
     </section>

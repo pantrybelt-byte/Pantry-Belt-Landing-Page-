@@ -166,13 +166,13 @@ export default function BrandStory() {
                   <div className="w-14 h-14 rounded-full bg-[#f5f5f7] overflow-hidden ring-4 ring-white shadow-sm relative z-0 flex items-center justify-center">
                     <img 
                       src="/t-sneed.jpg" 
-                      alt="Thaddeus Sneed" 
+                      alt="Thaddaus Sneed" 
                       className="w-full h-full object-cover object-[center_15%] scale-[1.35] translate-y-1"
                     />
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-[#1d1d1f] text-lg">Matthew Clarke & Thaddeus Sneed</p>
+                  <p className="font-bold text-[#1d1d1f] text-lg">Matthew Clarke & Thaddaus Sneed</p>
                   <p className="text-[#555558] text-sm font-medium uppercase tracking-wider">Founders, AccessBelt</p>
                 </div>
               </div>
