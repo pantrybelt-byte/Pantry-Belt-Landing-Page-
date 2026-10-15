@@ -153,10 +153,10 @@ export default function App() {
               <ul className="space-y-3 text-sm text-[#555558] font-medium">
                 <li>
                   <a
-                    href="mailto:getaccessbelt@gmail.com"
+                    href="mailto:admin@accessbelt.com"
                     className="hover:text-[#0071e3] transition-colors font-semibold text-[#1d1d1f]"
                   >
-                    getaccessbelt@gmail.com
+                    admin@accessbelt.com
                   </a>
                 </li>
                 <li className="text-xs text-[#555558]">
