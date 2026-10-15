@@ -37,7 +37,7 @@ export async function sendBetaClearanceEmail(recipientEmail: string): Promise<vo
       </div>
 
       <p style="font-size: 13px; color: #6e6e73;">
-        <strong>Direct Link:</strong> <a href="https://play.google.com/apps/testing/com.accessbelt.app" style="color: #0071e3;">https://play.google.com/apps/testing/com.accessbelt.app</a>
+        <strong>Direct Link:</strong> <a href="https://play.google.com/apps/testing/com.accessbelt.app" style="color: #b52525;">https://play.google.com/apps/testing/com.accessbelt.app</a>
       </p>
       
       <p style="font-size: 13px; color: #6e6e73;">
@@ -47,7 +47,7 @@ export async function sendBetaClearanceEmail(recipientEmail: string): Promise<vo
       <hr style="border: none; border-top: 1px solid #e5e5ea; margin: 24px 0;" />
       
       <p style="font-size: 13px; color: #86868b; margin-bottom: 4px;">
-        Questions or feedback? Reply directly to this email or reach us at <a href="mailto:getaccessbelt@gmail.com" style="color: #0071e3;">getaccessbelt@gmail.com</a>.
+        Questions or feedback? Reply directly to this email or reach us at <a href="mailto:getaccessbelt@gmail.com" style="color: #b52525;">getaccessbelt@gmail.com</a>.
       </p>
       <p style="font-size: 13px; color: #86868b; margin-top: 0;">
         — The AccessBelt Team
@@ -88,7 +88,7 @@ export async function sendBetaClearanceEmail(recipientEmail: string): Promise<vo
         <strong>Action Required:</strong> Add this Gmail address to your Google Play Console Closed Testing Email List so their authorization clears.
       </p>
       <div style="margin: 24px 0;">
-        <a href="https://play.google.com/console" style="background-color: #0071e3; color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 600; padding: 12px 20px; border-radius: 6px; display: inline-block;">
+        <a href="https://play.google.com/console" style="background-color: #b52525; color: #ffffff; text-decoration: none; font-size: 14px; font-weight: 600; padding: 12px 20px; border-radius: 6px; display: inline-block;">
           Open Google Play Console →
         </a>
       </div>
@@ -121,7 +121,7 @@ export async function sendBetaClearanceEmail(recipientEmail: string): Promise<vo
 /**
  * Sends welcome confirmation email to new waitlist signups and notifies admin.
  */
-export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: string): Promise<void> {
+export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: string, smsOptIn: boolean): Promise<void> {
   const htmlMessage = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #1d1d1f; line-height: 1.6;">
       <div style="margin-bottom: 24px;">
@@ -132,14 +132,14 @@ export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: str
       <p style="font-size: 15px; color: #1d1d1f;">Hi ${name || "there"},</p>
       
       <p style="font-size: 15px; color: #333336;">
-        Thank you for reserving your spot on the AccessBelt waitlist! We are thrilled to have you as a pantry pioneer.
+        Thanks for signing up! You're on the list to hear the moment AccessBelt launches.
       </p>
       
       <p style="font-size: 15px; color: #333336;">
-        We will notify you via email and SMS the moment AccessBelt expands and launches in your area.
+        We'll ${smsOptIn ? "email and text you" : "email you"} as soon as AccessBelt is ready to download: a free, private app to find food pantries near you, ask Pete for help, and connect with SNAP, WIC and 211.
       </p>
       
-      <div style="background-color: #f5f5f7; border-left: 4px solid #0071e3; border-radius: 4px; padding: 14px 18px; margin: 20px 0;">
+      <div style="background-color: #f5f5f7; border-left: 4px solid #b52525; border-radius: 4px; padding: 14px 18px; margin: 20px 0;">
         <p style="margin: 0; font-size: 14px; color: #1d1d1f; font-weight: 600;">
           Want to test the app early?
         </p>
@@ -147,7 +147,7 @@ export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: str
           Our public beta is live on iOS (Apple TestFlight) and Android (Google Play Closed Testing). You can install the preview build at any time:
         </p>
         <p style="margin: 10px 0 0 0;">
-          <a href="https://accessbelt.org/beta" style="color: #0071e3; font-weight: 600; font-size: 13px; text-decoration: underline;">
+          <a href="https://accessbelt.com/beta" style="color: #b52525; font-weight: 600; font-size: 13px; text-decoration: underline;">
             Explore the Beta Testing Portal →
           </a>
         </p>
@@ -188,10 +188,11 @@ export async function sendWaitlistWelcomeEmail(name: string, recipientEmail: str
       <p style="font-size: 15px; color: #333336;">
         A new user joined the AccessBelt waitlist:
       </p>
-      <div style="background-color: #f5f5f7; border-left: 4px solid #0071e3; border-radius: 4px; padding: 14px 18px; margin: 18px 0;">
+      <div style="background-color: #f5f5f7; border-left: 4px solid #b52525; border-radius: 4px; padding: 14px 18px; margin: 18px 0;">
         <p style="margin: 0; font-size: 15px; color: #1d1d1f;">
           <strong>Name:</strong> ${name || "Not provided"}<br/>
-          <strong>Email:</strong> ${recipientEmail}
+          <strong>Email:</strong> ${recipientEmail}<br/>
+          <strong>Text updates:</strong> ${smsOptIn ? "Opted in" : "No"}
         </p>
       </div>
       <hr style="border: none; border-top: 1px solid #e5e5ea; margin: 24px 0;" />

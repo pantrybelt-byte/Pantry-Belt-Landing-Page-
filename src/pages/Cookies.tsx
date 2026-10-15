@@ -11,20 +11,20 @@ export default function Cookies() {
       >
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-display font-semibold mb-4 tracking-tight">Cookie Policy</h1>
-          <p className="text-[#86868b] text-lg font-medium">Last Updated: April 2026</p>
+          <p className="text-[#6e6e73] text-lg font-medium">Last Updated: April 2026</p>
         </div>
 
         <div className="space-y-10">
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">1. What are Cookies?</h3>
-            <p className="text-[#86868b] leading-relaxed">
+            <p className="text-[#6e6e73] leading-relaxed">
               Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and to provide a better, more personalized user experience.
             </p>
           </section>
 
           <section className="space-y-4">
             <h3 className="text-2xl font-display font-semibold text-[#1d1d1f]">2. How We Use Cookies</h3>
-            <p className="text-[#86868b] leading-relaxed">
+            <p className="text-[#6e6e73] leading-relaxed">
               AccessBelt uses a minimal, strictly necessary cookie footprint. We use cookies primarily for:
             </p>
             <ul className="list-disc pl-5 mt-2 space-y-1 text-slate-600">

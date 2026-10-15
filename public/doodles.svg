@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <!-- Seamless tile: every doodle sits fully inside the tile, so repeats never show a seam. -->
+  <g fill="#ece7e0" stroke="#d3ccc2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(70 80) rotate(-12) scale(1.0)"><path d="M0 -16c-13-9-31-2-31 15c0 18 13 33 25 33c4 0 6-2 6-2s2 2 6 2c12 0 25-15 25-33c0-17-18-24-31-15z"/><path d="M0 -16v-11" fill="none"/><path d="M2 -23c6-8 16-8 18-4c-6 6-14 6-18 4z"/></g>
+    <g transform="translate(230 64) rotate(38) scale(0.95)"><path d="M0 -28L11 18Q0 32-11 18Z"/><path d="M-5 -6h6M-3 6h5" fill="none"/><path d="M0 -28l-9-13M0 -28v-15M0 -28l9-13" fill="none"/></g>
+    <g transform="translate(400 96) rotate(-8) scale(0.9)"><path d="M-34 2c0-15 14-23 34-23s34 8 34 23v17h-68z"/><path d="M-17-10l8 8M0-12l8 8M17-10l8 8" fill="none"/></g>
+    <g transform="translate(530 70) rotate(14) scale(0.85)"><path d="M0 -26c-7 0-10 7-10 14c0 5-12 10-12 24c0 12 10 20 22 20s22-8 22-20c0-14-12-19-12-24c0-7-3-14-10-14z"/><path d="M0 -26v-8" fill="none"/></g>
+    <g transform="translate(120 220) rotate(9) scale(0.9)"><ellipse cx="-24" cy="-8" rx="10" ry="13"/><ellipse cx="0" cy="-10" rx="10" ry="13"/><ellipse cx="24" cy="-8" rx="10" ry="13"/><path d="M-40 0h80l-6 18h-68z"/></g>
+    <g transform="translate(300 200) rotate(-14) scale(0.95)"><path d="M-6 4L-8 30h14L4 4z"/><circle cx="-13" cy="-12" r="12"/><circle cx="4" cy="-19" r="13"/><circle cx="16" cy="-6" r="11"/><circle cx="-2" cy="-2" r="11"/></g>
+    <g transform="translate(470 236) rotate(6) scale(1.0)"><rect x="-16" y="-20" width="32" height="38" rx="6"/><rect x="-18" y="-28" width="36" height="9" rx="3"/><path d="M-9 -4h18" fill="none"/></g>
+    <g transform="translate(60 370) rotate(-40) scale(0.8)"><path d="M0 -28L11 18Q0 32-11 18Z"/><path d="M-5 -6h6M-3 6h5" fill="none"/><path d="M0 -28l-9-13M0 -28v-15M0 -28l9-13" fill="none"/></g>
+    <g transform="translate(210 350) rotate(-10) scale(0.9)"><path d="M0 -26c-7 0-10 7-10 14c0 5-12 10-12 24c0 12 10 20 22 20s22-8 22-20c0-14-12-19-12-24c0-7-3-14-10-14z"/><path d="M0 -26v-8" fill="none"/></g>
+    <g transform="translate(370 380) rotate(18) scale(0.85)"><path d="M0 -16c-13-9-31-2-31 15c0 18 13 33 25 33c4 0 6-2 6-2s2 2 6 2c12 0 25-15 25-33c0-17-18-24-31-15z"/><path d="M0 -16v-11" fill="none"/><path d="M2 -23c6-8 16-8 18-4c-6 6-14 6-18 4z"/></g>
+    <g transform="translate(530 400) rotate(120) scale(0.9)"><path d="M0 -28L11 18Q0 32-11 18Z"/><path d="M-5 -6h6M-3 6h5" fill="none"/><path d="M0 -28l-9-13M0 -28v-15M0 -28l9-13" fill="none"/></g>
+    <g transform="translate(120 520) rotate(6) scale(0.85)"><path d="M-34 2c0-15 14-23 34-23s34 8 34 23v17h-68z"/><path d="M-17-10l8 8M0-12l8 8M17-10l8 8" fill="none"/></g>
+    <g transform="translate(300 530) rotate(-12) scale(0.85)"><rect x="-16" y="-20" width="32" height="38" rx="6"/><rect x="-18" y="-28" width="36" height="9" rx="3"/><path d="M-9 -4h18" fill="none"/></g>
+    <g transform="translate(450 540) rotate(16) scale(0.8)"><path d="M-6 4L-8 30h14L4 4z"/><circle cx="-13" cy="-12" r="12"/><circle cx="4" cy="-19" r="13"/><circle cx="16" cy="-6" r="11"/><circle cx="-2" cy="-2" r="11"/></g>
+  </g>
+</svg>

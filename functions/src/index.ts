@@ -23,10 +23,10 @@ export const onWaitlistSignup = onDocumentCreated("waitlist/{docId}", async (eve
             <div style="font-family: sans-serif; max-w: 600px; margin: 0 auto; padding: 20px;">
               <h2 style="color: #1d1d1f; font-weight: 600;">Hi ${data.name || 'there'},</h2>
               <p style="color: #424245; line-height: 1.6; font-size: 16px;">
-                Thank you for reserving your spot on the waitlist! We are thrilled to have you as a pioneer.
+                Thanks for signing up! You're on the list to hear the moment AccessBelt launches.
               </p>
               <p style="color: #424245; line-height: 1.6; font-size: 16px;">
-                We will update you via email and SMS the moment AccessBelt launches in your area.
+                We'll ${data.sms_consent ? "email and text you" : "email you"} as soon as AccessBelt is ready to download.
               </p>
               <br/>
               <p style="color: #424245; line-height: 1.6; font-size: 16px;">

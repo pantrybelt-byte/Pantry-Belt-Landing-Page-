@@ -11,9 +11,9 @@ export default function NotFound() {
         transition={{ duration: 0.8 }}
         className="max-w-xl mx-auto text-center"
       >
-        <h1 className="text-8xl font-display font-bold text-[#0071e3] mb-6">404</h1>
+        <h1 className="text-8xl font-display font-bold text-[#b52525] mb-6">404</h1>
         <h2 className="text-3xl md:text-4xl font-display font-semibold mb-6">Page not found.</h2>
-        <p className="text-[#86868b] text-lg font-medium leading-relaxed mb-10">
+        <p className="text-[#6e6e73] text-lg font-medium leading-relaxed mb-10">
           The page you are looking for doesn't exist, has been moved, or is temporarily unavailable. Let's get you back on track.
         </p>
         <Link to="/" className="btn-floating inline-flex items-center px-8 py-4 !rounded-full text-base !font-semibold">

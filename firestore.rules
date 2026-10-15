@@ -1,3 +1,8 @@
+// ⚠️  DO NOT DEPLOY THESE RULES FROM THIS REPO.
+// The website and the mobile app share one Firebase project (pantrybelt-1e7eb), and Firestore keeps a
+// single ruleset. The live rules are maintained in the app repo (pantrybelt-v3-3/firestore.rules);
+// deploying this file would overwrite them and break the app. This copy only documents the rules the
+// website relies on (waitlist, android_testers), which must be mirrored into the app repo's file.
 rules_version = '2';
 
 service cloud.firestore {
@@ -74,16 +79,23 @@ service cloud.firestore {
     }
 
     // ── Validation helpers ─────────────────────────────────────────────────────
+    // Texts are optional: a phone number is accepted only together with an SMS opt-in,
+    // and never stored without one.
     function isValidWaitlistEntry() {
       let d = request.resource.data;
-      return d.keys().hasAll(['name', 'email', 'phone_sms', 'created_at'])
-          && d.keys().hasOnly(['name', 'email', 'phone_sms', 'created_at'])
+      return d.keys().hasAll(['name', 'email', 'sms_consent', 'created_at'])
+          && d.keys().hasOnly(['name', 'email', 'sms_consent', 'phone_sms', 'created_at'])
           && d.name is string
           && d.name.size() > 0
+          && d.name.size() <= 120
           && d.email is string
           && d.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
-          && d.phone_sms is string
-          && d.phone_sms.matches('^\\+1[0-9]{10}$')
+          && d.sms_consent is bool
+          && ((d.sms_consent == true
+                && d.keys().hasAll(['phone_sms'])
+                && d.phone_sms is string
+                && d.phone_sms.matches('^\\+1[0-9]{10}$'))
+              || (d.sms_consent == false && !d.keys().hasAny(['phone_sms'])))
           && d.created_at is timestamp;
     }
 

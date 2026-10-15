@@ -1,28 +1,30 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Send, CheckCircle2, AlertCircle, Loader2, ArrowLeft } from "lucide-react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../lib/firebase";
-import { sendWaitlistWelcomeEmail } from "../lib/email";
+import { Bell, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+
+const inputClass =
+  "w-full rounded-[14px] border border-black/[0.06] bg-[#f5f5f7] px-5 py-4 text-base font-medium text-[#1d1d1f] transition-all placeholder:text-[#a1a1a6] focus:border-[#b52525] focus:outline-none focus:ring-2 focus:ring-[#b52525]/40";
+const labelClass = "ml-1 text-[13px] font-semibold text-[#555558]";
 
 export default function WaitlistForm() {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [error, setError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
 
   // Form State
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [consent, setConsent] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [smsOptIn, setSmsOptIn] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [textingConfirmed, setTextingConfirmed] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
-    // Validation
     if (!name.trim()) {
-      setError("Please enter your full name.");
+      setError("Please enter your name.");
       return;
     }
 
@@ -32,178 +34,213 @@ export default function WaitlistForm() {
       return;
     }
 
-    const rawPhone = phone.replace(/\D/g, "");
-    if (rawPhone.length !== 10) {
-      setError("Please enter a valid 10-digit phone number (US network).");
-      return;
+    // Texts are optional. A phone number is only collected (and stored) together with an opt-in.
+    let phoneSms: string | null = null;
+    if (smsOptIn) {
+      const rawPhone = phone.replace(/\D/g, "");
+      if (rawPhone.length !== 10) {
+        setError("Please enter a 10-digit US phone number for text updates, or uncheck the text option.");
+        return;
+      }
+      phoneSms = `+1${rawPhone}`;
     }
-    const e164Phone = `+1${rawPhone}`;
 
-    if (!consent) {
-      setError("You must agree to receive SMS updates to proceed.");
-      return;
-    }
-
-    setStatus('submitting');
+    setStatus("submitting");
 
     try {
-      await addDoc(collection(db, 'waitlist'), {
-        name: name.trim(),
-        email: email.trim(),
-        phone_sms: e164Phone,
-        created_at: serverTimestamp()
-      });
+      // Firebase only loads when someone actually signs up, keeping it off the initial page load.
+      const { addWaitlistEntry } = await import("../lib/waitlist");
+      await addWaitlistEntry({ name: name.trim(), email: email.trim(), smsConsent: smsOptIn, phoneSms });
 
       // Send automated welcome email via EmailJS
       try {
-        await sendWaitlistWelcomeEmail(name.trim(), email.trim());
+        const { sendWaitlistWelcomeEmail } = await import("../lib/email");
+        await sendWaitlistWelcomeEmail(name.trim(), email.trim(), smsOptIn);
       } catch (emailErr) {
         console.warn("EmailJS waitlist email dispatch failed (non-blocking):", emailErr);
       }
 
-      setStatus('success');
+      setTextingConfirmed(smsOptIn);
+      setStatus("success");
       setShowModal(true);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Firestore write failed:", err);
-      setError('Something went wrong connecting to the database.');
-      setStatus('idle');
+      setError("Something went wrong saving your signup. Please try again in a moment.");
+      setStatus("idle");
     }
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setStatus('idle');
-    setName('');
-    setEmail('');
-    setPhone('');
-    setConsent(false);
+    setStatus("idle");
+    setName("");
+    setEmail("");
+    setSmsOptIn(false);
+    setPhone("");
     setError(null);
   };
 
   return (
     <>
       <section id="waitlist" className="section-padding bg-transparent relative overflow-hidden">
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="mb-3 md:mb-4">Ready to pioneer?</h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-[#1d1d1f] tracking-tight mb-4 md:mb-6">
-              Reserve Your Spot
+        <div className="relative z-10 mx-auto max-w-4xl">
+          <div className="mb-12 text-center md:mb-14">
+            <h2 className="mb-3 md:mb-4">Be the first to know</h2>
+            <h3 className="mb-4 font-display text-3xl font-bold tracking-[-0.03em] text-[#1d1d1f] sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl">
+              Get notified at launch
             </h3>
-            <p className="text-[#555558] text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-              Be the first to know when we launch in your area. Connect with essential food resources through technology.
+            <p className="mx-auto max-w-2xl text-lg font-medium leading-relaxed text-[#555558] md:text-xl">
+              We'll let you know the day AccessBelt is ready to download.{" "}
+              <span className="whitespace-nowrap">
+                Want it sooner?{" "}
+                <Link to="/beta" className="font-semibold text-[#b52525] underline-offset-4 hover:underline">
+                  Try the beta
+                </Link>
+                .
+              </span>
             </p>
           </div>
 
-          <motion.form 
+          <motion.form
             onSubmit={handleSubmit}
+            noValidate
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-2xl mx-auto space-y-6 md:space-y-8 bg-white shadow-3d rounded-[var(--radius-apple)] border border-black/5 p-6 sm:p-10 md:p-14"
+            className="mx-auto max-w-2xl space-y-6 rounded-[24px] border border-black/5 bg-white p-6 shadow-3d sm:p-10 md:p-12"
           >
             {error && (
-              <motion.div 
+              <motion.div
+                role="alert"
                 initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                className="bg-red-50 border border-red-200 text-red-600 p-4 rounded-xl flex items-center gap-3 text-sm font-medium"
+                animate={{ opacity: 1, height: "auto" }}
+                className="flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-700"
               >
-                <AlertCircle className="w-5 h-5 shrink-0" />
+                <AlertCircle className="h-5 w-5 shrink-0" aria-hidden="true" />
                 {error}
               </motion.div>
             )}
 
-            <div className="space-y-3">
-              <label htmlFor="waitlist-name" className="text-xs font-bold text-[#555558] uppercase tracking-widest ml-1">Full Name</label>
-              <input 
-                id="waitlist-name"
-                required
-                type="text" 
-                placeholder="John Doe"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#86868b]"
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              <div className="space-y-3">
-                <label htmlFor="waitlist-email" className="text-xs font-bold text-[#555558] uppercase tracking-widest ml-1">Email Address</label>
-                <input 
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="space-y-2">
+                <label htmlFor="waitlist-name" className={labelClass}>
+                  Name
+                </label>
+                <input
+                  id="waitlist-name"
+                  required
+                  type="text"
+                  autoComplete="name"
+                  placeholder="Your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className={inputClass}
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="waitlist-email" className={labelClass}>
+                  Email
+                </label>
+                <input
                   id="waitlist-email"
                   required
-                  type="email" 
-                  placeholder="john@example.com"
+                  type="email"
+                  autoComplete="email"
+                  inputMode="email"
+                  placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#86868b]"
-                />
-              </div>
-              <div className="space-y-3">
-                <label htmlFor="waitlist-phone" className="text-xs font-bold text-[#555558] uppercase tracking-widest ml-1">Phone Number</label>
-                <input 
-                  id="waitlist-phone"
-                  required
-                  type="tel" 
-                  placeholder="(415) 555-2671"
-                  value={phone}
-                  onChange={(e) => {
-                    let val = e.target.value.replace(/\D/g, "");
-                    if (val.length > 10) val = val.slice(0, 10);
-                    
-                    let formatted = val;
-                    if (val.length > 6) {
-                      formatted = `(${val.slice(0, 3)}) ${val.slice(3, 6)}-${val.slice(6)}`;
-                    } else if (val.length > 3) {
-                      formatted = `(${val.slice(0, 3)}) ${val.slice(3)}`;
-                    } else if (val.length > 0) {
-                      formatted = `(${val}`;
-                    }
-                    
-                    // Allow clearing the input completely
-                    if (e.target.value === "") formatted = "";
-                    
-                    setPhone(formatted);
-                  }}
-                  className="w-full px-6 py-4 rounded-[14px] bg-[#f5f5f7] border border-black/5 text-[#1d1d1f] focus:outline-none focus:ring-2 focus:ring-[#0071e3]/50 focus:border-[#0071e3] transition-all text-base font-medium placeholder:text-[#86868b]"
+                  className={inputClass}
                 />
               </div>
             </div>
 
-            <label htmlFor="waitlist-consent" className="flex items-start gap-4 p-4 rounded-xl bg-[#f5f5f7] border border-black/5 cursor-pointer hover:bg-black/5 transition-colors">
-              <div className="mt-1">
-                <input 
-                  id="waitlist-consent"
-                  type="checkbox" 
-                  required
-                  checked={consent}
-                  onChange={(e) => setConsent(e.target.checked)}
-                  className="w-5 h-5 rounded-[6px] border-black/20 bg-white text-[#0071e3] focus:ring-[#0071e3]/50"
+            <div className="rounded-2xl border border-black/[0.06] bg-[#f5f5f7]">
+              <label htmlFor="waitlist-sms" className="flex cursor-pointer items-center gap-3.5 p-4">
+                <input
+                  id="waitlist-sms"
+                  type="checkbox"
+                  checked={smsOptIn}
+                  onChange={(e) => setSmsOptIn(e.target.checked)}
+                  aria-controls="waitlist-sms-details"
+                  aria-expanded={smsOptIn}
+                  className="h-5 w-5 shrink-0 rounded-[6px] border-black/20 accent-[#b52525]"
                 />
-              </div>
-              <span className="text-xs leading-relaxed text-[#555558] font-medium">
-                By checking this box, you consent to receive recurring marketing text messages (e.g., updates, waitlist status) from AccessBelt at the number provided. Consent is not a condition of obtaining any service. Reply STOP to cancel. Msg & data rates may apply.
-              </span>
-            </label>
+                <span className="text-[15px] font-semibold text-[#1d1d1f]">
+                  Also text me launch updates <span className="font-medium text-[#6e6e73]">(optional)</span>
+                </span>
+              </label>
+              <AnimatePresence initial={false}>
+                {smsOptIn && (
+                  <motion.div
+                    id="waitlist-sms-details"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="space-y-3 px-4 pb-4">
+                      <label htmlFor="waitlist-phone" className="sr-only">
+                        Mobile number
+                      </label>
+                      <input
+                        id="waitlist-phone"
+                        type="tel"
+                        autoComplete="tel-national"
+                        inputMode="tel"
+                        placeholder="(334) 555-0123"
+                        value={phone}
+                        onChange={(e) => {
+                          let val = e.target.value.replace(/\D/g, "");
+                          if (val.length > 10) val = val.slice(0, 10);
 
-            <button 
-              disabled={status === 'submitting'}
-              className="btn-floating w-full shadow-[#0071e3]/30 flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                          let formatted = val;
+                          if (val.length > 6) {
+                            formatted = `(${val.slice(0, 3)}) ${val.slice(3, 6)}-${val.slice(6)}`;
+                          } else if (val.length > 3) {
+                            formatted = `(${val.slice(0, 3)}) ${val.slice(3)}`;
+                          } else if (val.length > 0) {
+                            formatted = `(${val}`;
+                          }
+
+                          // Allow clearing the input completely
+                          if (e.target.value === "") formatted = "";
+
+                          setPhone(formatted);
+                        }}
+                        className={`${inputClass} bg-white`}
+                      />
+                      <p className="text-xs font-medium leading-relaxed text-[#555558]">
+                        By checking the box and entering your number, you consent to receive recurring text messages
+                        (e.g., launch updates) from AccessBelt at the number provided. Consent is not a condition of
+                        joining the list or of obtaining any service. Reply STOP to cancel. Msg & data rates may apply.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <button
+              disabled={status === "submitting"}
+              className="btn-floating group flex w-full items-center justify-center !rounded-full disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
             >
-              {status === 'submitting' ? (
+              {status === "submitting" ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                  Processing...
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />
+                  Signing you up...
                 </>
               ) : (
                 <>
-                  Reserve My Spot
-                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ml-2" />
+                  <Bell className="mr-2 h-5 w-5" aria-hidden="true" />
+                  Notify me at launch
                 </>
               )}
             </button>
-            
-            <p className="text-xs text-[#86868b]/80 text-center font-medium">
+
+            <p className="text-center text-xs font-medium text-[#6e6e73]">
               We respect your privacy and will never share your personal data.
             </p>
           </motion.form>
@@ -220,58 +257,63 @@ export default function WaitlistForm() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
-            style={{ backgroundColor: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(12px)' }}
-            onClick={(e) => { if (e.target === e.currentTarget) handleCloseModal(); }}
+            style={{ backgroundColor: "rgba(0,0,0,0.45)", backdropFilter: "blur(12px)" }}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) handleCloseModal();
+            }}
           >
             <motion.div
               id="success-modal-card"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="success-modal-title"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-md bg-white rounded-[var(--radius-apple)] shadow-3d border border-black/5 p-8 sm:p-10 md:p-14 text-center max-h-[95vh] overflow-y-auto"
+              className="relative max-h-[95vh] w-full max-w-md overflow-y-auto rounded-[24px] border border-black/5 bg-white p-8 text-center shadow-3d sm:p-10 md:p-12"
             >
               {/* Animated checkmark */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 220, damping: 18 }}
-                className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0071e3]/10 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-7"
+                className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#e8f5ec] sm:mb-7 sm:h-20 sm:w-20"
               >
-                <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-[#0071e3]" />
+                <CheckCircle2 className="h-8 w-8 text-[#15803d] sm:h-10 sm:w-10" aria-hidden="true" />
               </motion.div>
 
-              {/* Headline */}
               <motion.h3
+                id="success-modal-title"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="text-2xl sm:text-3xl font-display font-semibold text-[#1d1d1f] mb-3 tracking-tight"
+                className="mb-3 font-display text-2xl font-bold tracking-[-0.02em] text-[#1d1d1f] sm:text-3xl"
               >
                 You're on the list.
               </motion.h3>
 
-              {/* Subtext */}
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
-                className="text-[#86868b] text-sm sm:text-base font-medium leading-relaxed mb-8 sm:mb-10"
+                className="mb-8 text-sm font-medium leading-relaxed text-[#555558] sm:mb-10 sm:text-base"
               >
-                Your spot is reserved. We'll notify you the moment AccessBelt launches in your area.
+                {textingConfirmed
+                  ? "We'll email and text you the moment AccessBelt is ready to download."
+                  : "We'll email you the moment AccessBelt is ready to download."}
               </motion.p>
 
-              {/* Back button */}
               <motion.button
                 id="success-modal-back-btn"
+                autoFocus
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
                 onClick={handleCloseModal}
-                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-[14px] border border-black/10 bg-[#f5f5f7] text-[#1d1d1f] font-semibold text-sm hover:bg-black/8 active:scale-95 transition-all duration-200"
+                className="inline-flex items-center gap-2 rounded-full bg-[#1d1d1f] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-black active:scale-95"
               >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Page
+                Done
               </motion.button>
             </motion.div>
           </motion.div>
@@ -280,4 +322,3 @@ export default function WaitlistForm() {
     </>
   );
 }
-

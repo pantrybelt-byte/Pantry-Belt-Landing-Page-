@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import ScrollToTop from "./components/ScrollToTop";
+import SiteNav from "./components/SiteNav";
+import { getOperatorPortalUrl } from "./lib/portalUrl";
 
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
@@ -18,59 +20,12 @@ export default function App() {
     location.pathname === "/become-tester";
 
   return (
-    <main className="min-h-screen bg-[#f5f5f7] selection:bg-[#0071e3]/20 selection:text-[#0071e3] relative isolate overflow-hidden">
+    <main className="min-h-screen bg-[#f6f3ee] selection:bg-[#b52525]/20 selection:text-[#b52525] relative isolate overflow-hidden">
       <ScrollToTop />
-      {/* 3D Background Pattern */}
+      {/* Food-doodle background (seamless vector tile) */}
       <div className="bg-pattern animate-background-drift" />
 
-      {/* Navigation - Refined Apple-like Header */}
-      <nav className="fixed top-0 w-full z-50 apple-blur border-b border-black/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
-          {/* Left - Standalone Logo */}
-          <Link to="/" className="flex items-center group cursor-pointer" aria-label="AccessBelt Home">
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden bg-white shadow-sm flex items-center justify-center transition-transform group-hover:scale-105 border border-black/5">
-              <img src="/logo.png" alt="AccessBelt Logo" className="w-full h-full object-cover scale-[1.08]" />
-            </div>
-            <span className="ml-3 font-display font-semibold text-lg text-[#1d1d1f] hidden sm:inline-block tracking-tight">
-              AccessBelt
-            </span>
-          </Link>
-
-          {/* Center - Desktop Navigation Links */}
-          <div className="hidden md:flex items-center gap-8">
-            <a href="/#how-it-works" className="text-sm font-medium text-[#555558] hover:text-[#0071e3] transition-colors">
-              How It Works
-            </a>
-            <a href="/#story" className="text-sm font-medium text-[#555558] hover:text-[#0071e3] transition-colors">
-              Our Story
-            </a>
-            <a href="/#impact" className="text-sm font-medium text-[#555558] hover:text-[#0071e3] transition-colors">
-              Impact
-            </a>
-          </div>
-
-          {/* Right - Call to Action */}
-          <div className="flex items-center">
-            {isBetaPage ? (
-              <a
-                href="#builds"
-                className="btn-floating px-3.5 sm:px-5 py-1.5 sm:py-2 !rounded-full !text-xs sm:!text-sm !font-semibold"
-                id="nav-install-beta"
-              >
-                Install Beta
-              </a>
-            ) : (
-              <Link
-                to="/beta"
-                className="btn-floating px-3.5 sm:px-5 py-1.5 sm:py-2 !rounded-full !text-xs sm:!text-sm !font-semibold"
-                id="nav-become-tester"
-              >
-                Become a Tester
-              </Link>
-            )}
-          </div>
-        </div>
-      </nav>
+      <SiteNav isBetaPage={isBetaPage} />
 
       {/* Page Routing */}
       <div className="relative z-10 pt-20">
@@ -111,13 +66,13 @@ export default function App() {
         </Suspense>
       </div>
 
-      <footer className="py-20 px-6 bg-[#f5f5f7] relative z-10">
+      <footer className="py-20 px-6 bg-[#f6f3ee] relative z-10 border-t border-black/5">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
             <div className="space-y-6 max-w-sm">
               <div className="flex items-center">
-                <Link to="/" className="w-32 h-32 rounded-full overflow-hidden bg-[#f5f5f7] border border-black/5 shrink-0 flex items-center justify-center -ml-4 hover:scale-105 transition-transform">
-                  <img src="/logo.png" alt="AccessBelt Logo" className="w-full h-full object-cover scale-[1.08]" />
+                <Link to="/" aria-label="AccessBelt Home" className="w-28 h-28 rounded-full overflow-hidden bg-white border border-black/5 shrink-0 flex items-center justify-center hover:scale-105 transition-transform">
+                  <img src="/img/logo-256.webp" alt="" width={112} height={112} loading="lazy" className="w-full h-full object-cover scale-[1.08]" />
                 </Link>
               </div>
               <p className="text-[#555558] font-medium text-base leading-relaxed">
@@ -126,13 +81,31 @@ export default function App() {
             </div>
 
             <div className="flex flex-col gap-4">
+              <p className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest">Pantry Partners</p>
+              <ul className="space-y-3 text-sm text-[#555558] font-medium">
+                <li>
+                  <a
+                    href={getOperatorPortalUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#b52525] transition-colors font-semibold text-[#1d1d1f] flex items-center gap-1.5"
+                  >
+                    Operator Portal →
+                  </a>
+                </li>
+                <li><Link to="/beta" className="hover:text-[#b52525] transition-colors">Android Closed Beta</Link></li>
+                <li><a href="mailto:admin@accessbelt.com" className="hover:text-[#b52525] transition-colors">Partner Verification</a></li>
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-4">
               <p className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest">Legal & Governance</p>
               <ul className="space-y-3 text-sm text-[#555558] font-medium">
-                <li><Link to="/terms" className="hover:text-[#0071e3] transition-colors">Terms of Service</Link></li>
-                <li><Link to="/privacy" className="hover:text-[#0071e3] transition-colors">Privacy Policy</Link></li>
-                <li><Link to="/dmca" className="hover:text-[#0071e3] transition-colors">DMCA Copyright Policy</Link></li>
-                <li><Link to="/ugc" className="hover:text-[#0071e3] transition-colors">UGC & Moderation Policy</Link></li>
-                <li><Link to="/cookies" className="hover:text-[#0071e3] transition-colors">Cookies Policy</Link></li>
+                <li><Link to="/terms" className="hover:text-[#b52525] transition-colors">Terms of Service</Link></li>
+                <li><Link to="/privacy" className="hover:text-[#b52525] transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/dmca" className="hover:text-[#b52525] transition-colors">DMCA Copyright Policy</Link></li>
+                <li><Link to="/ugc" className="hover:text-[#b52525] transition-colors">UGC & Moderation Policy</Link></li>
+                <li><Link to="/cookies" className="hover:text-[#b52525] transition-colors">Cookies Policy</Link></li>
               </ul>
             </div>
 
@@ -142,7 +115,7 @@ export default function App() {
                 <li>
                   <a
                     href="mailto:getaccessbelt@gmail.com"
-                    className="hover:text-[#0071e3] transition-colors font-semibold text-[#1d1d1f]"
+                    className="hover:text-[#b52525] transition-colors font-semibold text-[#1d1d1f]"
                   >
                     getaccessbelt@gmail.com
                   </a>

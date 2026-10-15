@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  
-  /* Apple White Palette */
-  --color-apple-white: #ffffff;
-  --color-apple-silver: #f5f5f7;
-  --color-apple-dark: #1d1d1f;
-  --color-apple-gray: #86868b;
-  --color-apple-blue: #0071e3;
-  --color-apple-blue-hover: #0077ED;
-  
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* AccessBelt brand: the same red, green and cream as the app, logo and promo video */
+  --color-brand: #b52525;
+  --color-brand-hover: #9e1f1f;
+  --color-brand-tint: #fbeceb;
+  --color-leaf: #15803d;
+  --color-canvas: #f6f3ee;
+  --color-ink: #1d1d1f;
+  --color-body: #555558;
+  --color-muted: #6e6e73;   /* lightest gray that still passes WCAG AA on the canvas */
+
   /* Apple HIG Standard Properties */
   --radius-apple: 18px;
   --radius-apple-sm: 12px;
@@ -19,10 +21,10 @@
 
 @layer base {
   h1 {
-    @apply font-display text-[36px] sm:text-[52px] md:text-[72px] lg:text-[80px] leading-[1.08] tracking-[-0.02em] font-semibold text-[#1d1d1f];
+    @apply font-display text-[38px] sm:text-[54px] md:text-[72px] lg:text-[80px] leading-[1.05] tracking-[-0.035em] font-bold text-[#1d1d1f];
   }
   h2 {
-    @apply font-display text-[12px] uppercase tracking-[0.18em] font-bold text-[#86868b];
+    @apply font-display text-[12px] uppercase tracking-[0.18em] font-bold text-[#6e6e73];
   }
   body {
     @apply font-sans text-[16px] md:text-[18px] leading-relaxed antialiased text-[#1d1d1f] bg-white;
@@ -47,16 +49,15 @@
 }
 
 .btn-primary {
-  @apply px-8 py-4 bg-[#0071e3] text-white rounded-[18px] font-semibold hover:bg-[#0077ED] transition-all duration-300 active:scale-95 shadow-lg shadow-[#0071e3]/20 text-center flex items-center justify-center;
+  @apply px-8 py-4 bg-[#b52525] text-white rounded-[18px] font-semibold hover:bg-[#9e1f1f] transition-all duration-300 active:scale-95 shadow-lg shadow-[#b52525]/20 text-center flex items-center justify-center;
 }
 
 .btn-floating {
-  @apply px-8 py-4 bg-[#0071e3] text-white rounded-[18px] font-semibold hover:bg-[#0077ED] transition-all duration-300 active:scale-95 text-center flex items-center justify-center hover:-translate-y-1 shadow-[0_20px_40px_rgba(0,113,227,0.3)] hover:shadow-[0_25px_50px_rgba(0,113,227,0.4)];
-  animation: glow-pulse 2s infinite;
+  @apply px-8 py-4 bg-[#b52525] text-white rounded-[18px] font-semibold hover:bg-[#9e1f1f] transition-all duration-300 active:scale-95 text-center flex items-center justify-center hover:-translate-y-0.5 shadow-[0_14px_30px_rgba(181,37,37,0.26)] hover:shadow-[0_18px_38px_rgba(181,37,37,0.32)];
 }
 
 .btn-secondary {
-  @apply px-8 py-3 text-[#1d1d1f] hover:text-[#0071e3] font-medium transition-all duration-300 flex items-center gap-1;
+  @apply px-8 py-3 text-[#1d1d1f] hover:text-[#b52525] font-medium transition-all duration-300 flex items-center gap-1;
 }
 
 /* 3D Depth Utilities */
@@ -67,16 +68,11 @@
     0 30px 60px rgba(0,0,0,0.08);
 }
 
-.text-gradient-blue {
-  @apply bg-clip-text text-transparent bg-gradient-to-br from-[#1d1d1f] to-[#0071e3];
-}
-
 .bg-pattern {
-  background-image: url('/bg-pattern.png');
+  background-image: url('/doodles.svg');
   background-repeat: repeat;
   background-size: 600px;
-  mix-blend-mode: multiply;
-  opacity: 0.15;
+  opacity: 0.42;
   position: absolute;
   inset: -50px;
   z-index: -1;
@@ -96,6 +92,22 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Anchored sections clear the fixed 80px nav */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+/* Visible keyboard focus everywhere (mouse clicks don't trigger it) */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid rgba(181, 37, 37, 0.45);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-background-drift { animation: none; }
 }
 
 @keyframes spin {

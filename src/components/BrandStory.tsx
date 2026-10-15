@@ -1,36 +1,13 @@
-import { useRef, useState } from "react";
 import { motion } from "motion/react";
+import PhoneShowcase from "./PhoneShowcase";
 
 export default function BrandStory() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        videoRef.current.play();
-        setIsPlaying(true);
-      } else {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      }
-    }
-  };
-
   return (
     <section id="story" className="section-padding bg-transparent overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
@@ -38,90 +15,11 @@ export default function BrandStory() {
           >
             {/* Subtle ambient glow */}
             <div
-              className="absolute inset-0 blur-3xl opacity-15 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse at 50% 60%, #0071e3 0%, #34c759 60%, transparent 100%)" }}
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-15 blur-3xl"
+              style={{ background: "radial-gradient(ellipse at 50% 55%, #b52525 0%, #16a34a 60%, transparent 100%)" }}
             />
-
-            {/* iPhone frame */}
-            <div
-              className="relative w-[280px] md:w-[320px]"
-              style={{ filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.25))" }}
-            >
-              {/* Phone body */}
-              <div
-                className="relative rounded-[52px] bg-[#1c1c1e] p-[10px]"
-                style={{
-                  boxShadow: "0 0 0 1.5px #3a3a3c, inset 0 0 0 1px rgba(255,255,255,0.07)",
-                }}
-              >
-                {/* Volume buttons (left) */}
-                <div className="absolute left-[-3.5px] top-[110px] w-[3.5px] h-[32px] bg-[#48484a] rounded-l-sm" />
-                <div className="absolute left-[-3.5px] top-[155px] w-[3.5px] h-[60px] bg-[#48484a] rounded-l-sm" />
-                <div className="absolute left-[-3.5px] top-[228px] w-[3.5px] h-[60px] bg-[#48484a] rounded-l-sm" />
-                {/* Power button (right) */}
-                <div className="absolute right-[-3.5px] top-[160px] w-[3.5px] h-[80px] bg-[#48484a] rounded-r-sm" />
-
-                {/* Screen */}
-                <div className="relative rounded-[44px] overflow-hidden" style={{ aspectRatio: "9/19.5" }}>
-
-                  {/* Video fills the entire display */}
-                  <video
-                    ref={videoRef}
-                    src="/accessbelt-v3.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-
-                  {/* Tap to play/pause */}
-                  <button
-                    onClick={togglePlay}
-                    className="absolute inset-0 z-10 w-full h-full cursor-pointer bg-transparent focus-visible:ring-2 focus-visible:ring-[#0071e3] focus-visible:ring-inset rounded-[44px]"
-                    aria-label={isPlaying ? "Pause video" : "Play video"}
-                  >
-                    {!isPlaying && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
-                      </div>
-                    )}
-                  </button>
-
-                  {/* Bottom controls */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between px-3 py-3"
-                    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%)" }}
-                  >
-                    <button
-                      onClick={toggleMute}
-                      className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors focus-visible:ring-2 focus-visible:ring-white"
-                      aria-label={isMuted ? "Unmute" : "Mute"}
-                    >
-                      {isMuted ? (
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                          <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0 0 17.73 18 8.9 8.9 0 0 0 19 17.73L20.73 19.5 22 18.23 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-                        </svg>
-                      ) : (
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                        </svg>
-                      )}
-                    </button>
-
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#34c759] animate-pulse" />
-                      <span className="text-white text-[10px] font-semibold tracking-wide">AccessBelt</span>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
+            <PhoneShowcase />
           </motion.div>
 
           <motion.div
@@ -132,53 +30,82 @@ export default function BrandStory() {
             className="space-y-10"
           >
             <div className="space-y-4">
-              <div className="flex items-center gap-4 mb-2">
-                <h2 className="text-[#86868b] !mb-0">Our Brand Story</h2>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0071e3]/10 border border-[#0071e3]/20">
-                  <span className="text-sm font-bold text-[#0071e3]">100%</span>
-                  <span className="text-[10px] font-bold text-[#0071e3] uppercase tracking-widest">Community Focused</span>
+              <div className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-3">
+                <h2 className="!mb-0">Our story</h2>
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#b52525]/20 bg-[#b52525]/10 px-3 py-1">
+                  <span className="text-sm font-bold text-[#b52525]">100%</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#b52525]">Community Focused</span>
                 </div>
               </div>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-[#1d1d1f] leading-[1.15] tracking-tight">
+              <h3 className="font-display text-3xl font-bold leading-[1.12] tracking-[-0.03em] text-[#1d1d1f] sm:text-4xl md:text-5xl lg:text-6xl">
                 Born from a need <br /> to bridge the gap.
               </h3>
             </div>
-            
+
             <div className="space-y-6">
-              <p className="text-xl text-[#555558] leading-relaxed font-medium">
-                AccessBelt was formed in Montgomery, Alabama, born from a shared passion to improve community awareness and uplift rural, overlooked areas.
+              <p className="text-xl font-medium leading-relaxed text-[#555558]">
+                AccessBelt was formed in Montgomery, Alabama, born from a shared passion to improve community awareness and
+                uplift rural, overlooked areas.
               </p>
-              <p className="text-lg text-[#555558]/90 leading-relaxed">
-                We believe that no family should have to guess where their next meal is coming from. By bridging the gap between local resources and the people who need them most, we are bringing hope and essential support directly to the heart of our communities.
+              <p className="text-lg leading-relaxed text-[#555558]">
+                We believe that no family should have to guess where their next meal is coming from. By bridging the gap
+                between local resources and the people who need them most, we are bringing hope and essential support
+                directly to the heart of our communities.
               </p>
             </div>
 
-            <div className="pt-8 border-t border-black/5">
+            <div className="border-t border-black/5 pt-8">
               <div className="flex items-center gap-5">
                 <div className="flex -space-x-4">
-                  <div className="w-14 h-14 rounded-full bg-[#f5f5f7] overflow-hidden ring-4 ring-white shadow-sm relative z-10 flex items-center justify-center">
-                    <img 
-                      src="/m-clarke.jpg" 
-                      alt="Matthew Clarke" 
-                      className="w-full h-full object-cover object-[center_15%] scale-[1.35] translate-y-1"
+                  <div className="relative z-10 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-[#f5f5f7] shadow-sm ring-4 ring-white">
+                    <img
+                      src="/img/m-clarke.webp"
+                      alt="Matthew Clarke"
+                      width={56}
+                      height={56}
+                      loading="lazy"
+                      className="h-full w-full translate-y-1 scale-[1.35] object-cover object-[center_15%]"
                     />
                   </div>
-                  <div className="w-14 h-14 rounded-full bg-[#f5f5f7] overflow-hidden ring-4 ring-white shadow-sm relative z-0 flex items-center justify-center">
-                    <img 
-                      src="/t-sneed.jpg" 
-                      alt="Thaddeus Sneed" 
-                      className="w-full h-full object-cover object-[center_15%] scale-[1.35] translate-y-1"
+                  <div className="relative z-0 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-[#f5f5f7] shadow-sm ring-4 ring-white">
+                    <img
+                      src="/img/t-sneed.webp"
+                      alt="Thaddaus Sneed"
+                      width={56}
+                      height={56}
+                      loading="lazy"
+                      className="h-full w-full translate-y-1 scale-[1.35] object-cover object-[center_15%]"
                     />
                   </div>
                 </div>
                 <div>
-                  <p className="font-bold text-[#1d1d1f] text-lg">Matthew Clarke & Thaddeus Sneed</p>
-                  <p className="text-[#555558] text-sm font-medium uppercase tracking-wider">Founders, AccessBelt</p>
+                  <p className="text-lg font-bold text-[#1d1d1f]">Matthew Clarke & Thaddaus Sneed</p>
+                  <p className="text-sm font-medium uppercase tracking-wider text-[#555558]">Founders, AccessBelt</p>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mx-auto mt-16 max-w-5xl md:mt-24"
+        >
+          <div className="relative aspect-[1024/578] overflow-hidden rounded-[28px] border border-black/5 bg-white shadow-3d sm:rounded-[32px]">
+            <img
+              src="/img/pioneers-hero.webp"
+              alt="The Pantry Pioneers - Founders Matthew Clarke and Thaddaus Sneed presenting AccessBelt"
+              width={1024}
+              height={578}
+              className="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
