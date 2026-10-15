@@ -11,6 +11,11 @@ const Cookies = lazy(() => import("./pages/Cookies"));
 const BetaTesting = lazy(() => import("./pages/BetaTesting"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
+const OPERATOR_PORTAL_URL =
+  typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:5173"
+    : "https://operator.accessbelt.com";
+
 export default function App() {
   const location = useLocation();
   const isBetaPage =
@@ -49,8 +54,15 @@ export default function App() {
             </a>
           </div>
 
-          {/* Right - Call to Action */}
-          <div className="flex items-center">
+          {/* Right - Call to Action & Operator Login */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href={OPERATOR_PORTAL_URL}
+              className="text-xs sm:text-sm font-semibold text-[#1d1d1f] hover:text-[#0071e3] px-3 sm:px-3.5 py-1.5 rounded-full hover:bg-black/5 transition-colors"
+              id="nav-operator-login"
+            >
+              Operator Login
+            </a>
             {isBetaPage ? (
               <a
                 href="#builds"
@@ -152,6 +164,14 @@ export default function App() {
                 </li>
                 <li className="text-xs text-[#555558]">
                   Serving Alabama's Black Belt Region
+                </li>
+                <li className="pt-1">
+                  <a
+                    href={OPERATOR_PORTAL_URL}
+                    className="hover:text-[#0071e3] transition-colors font-medium text-xs text-[#555558]"
+                  >
+                    Operator Portal →
+                  </a>
                 </li>
               </ul>
             </div>
