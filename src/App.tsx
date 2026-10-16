@@ -14,7 +14,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const OPERATOR_PORTAL_URL =
   typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:5173"
-    : "https://accessbelt-portal.web.app";
+    : "https://operator.accessbelt.com";
 
 export default function App() {
   const location = useLocation();
